@@ -6,12 +6,12 @@ o=0;
 q=1;
 Var_startIndex=2349; % 
 %data&w
-Alternative_w=[1/5;1/5;1/5;1/5;1/5];
-ww=Alternative_w;
-data=Alternative_LP;
+%Alternative_w=[1/5;1/5;1/5;1/5;1/5];
+%ww=Alternative_w;
+%data=Alternative_LP;
 Equity_w=[1/3;1/3;1/3];
-%ww=Equity_w;
-%data=Equity_LP;
+ww=Equity_w;
+data=Equity_LP;
 [Var_lens,Var_cols]=size(data); %
 mdata=data(2:Var_startIndex,:);
 k=Var_cols;
@@ -27,20 +27,7 @@ for i=260:Var_lens
         newData(i-259,j)=epsilon;
    end
 end
-%[PARAMETERS,HT,W,PC]= o_mvgarch(newData,numfactors,p,o,q);
-[PARAMETERS,HT,W,PC]= o_mvgarch(data,numfactors,p,o,q);
-count = 1;
-paraW=[];
-paraA=[];
-paraB=[];
-for i=1:numfactors;
-    paraW(i)=PARAMETERS((i-1)*3+1);
-    paraA(i)=PARAMETERS((i-1)*3+2);
-    paraB(i)=PARAMETERS((i-1)*3+3);
-end
-paraW=paraW';
-paraA=paraA';
-paraB=paraB';
+
  
 %2
 for i=Var_startIndex:Var_lens
@@ -49,17 +36,25 @@ for i=Var_startIndex:Var_lens
     Cov_PF=cov(m2);  
     Alternative_Result_His(index,1)=sqrt(ww'*Cov_PF*ww); % 
     
-    m_new2=newData(i-522:i-261,:);
-    m_new=m2;
-    
-    %[w, pc] = pca(m_new2,'outer');
-    %[[w, pc] = pca(m_new,'cov');
-    [w, pc] = pca(m2,'cov');
+    m_new=newData(i-522:i-261,:);
+   [PARAMETERS,HT,W,PC]= o_mvgarch(m_new,numfactors,p,o,q);
+    paraW=[];
+    paraA=[];
+    paraB=[];
+    for j=1:numfactors;
+        paraW(j)=PARAMETERS((j-1)*3+1);
+        paraA(j)=PARAMETERS((j-1)*3+2);
+        paraB(j)=PARAMETERS((j-1)*3+3);
+    end
+    paraW=paraW';
+    paraA=paraA';
+    paraB=paraB';
+    [w, pc] = pca(m_new,'outer');
     weights = w(1:numfactors,:);
     wf=w(:,1:numfactors);	
     F = pc(:,1:numfactors);
 
-    erros=m_new2-F*weights;
+    erros=m_new-F*weights;
     omega=diag(mean(erros.^2));
     
     Ht=cov(F);
@@ -76,7 +71,7 @@ for i=Var_startIndex:Var_lens
  
     ht1=bsxfun(@plus,ht1,htsub2);
     Ht1=diag(ht1);
-    H_Factor=weights' * Ht1 * weights + omega;   
+    H_Factor=wf * Ht1 * wf' + omega;   
    Alternative_Result_Factor101(index)=sqrt(ww'*H_Factor*ww);
    disp(i);
 end 
