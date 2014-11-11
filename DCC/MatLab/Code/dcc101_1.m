@@ -60,7 +60,7 @@ for i=Var_startIndex:Var_lens
     index=i-Var_startIndex+1;  
     m2=data(i-261:i,:);
     Cov_PF=cov(m2);
-    Result_His1(index,1)=ww'*Cov_PF*ww; % 
+    Equity_Result_His(index,1)=ww'*Cov_PF*ww; % 
    
     n=m2;
     Ht=cov(n);
@@ -75,7 +75,7 @@ for i=Var_startIndex:Var_lens
     Rt1(1:Var_cols,1:Var_cols,index)=bsxfun(@plus,intcept,bsxfun(@plus,AA,BB));
    Dt1(:,:,index)=diag(sqrt(ht(1:Var_cols,1,index)));
    result_DCC(:,:,index)=Dt1(:,:,index)*Rt1(1:Var_cols,1:Var_cols,index)*Dt1(:,:,index);
-   Result(index)=ww'*result_DCC(:,:,index)*ww;
+   Equity_Result_DCC101(index)=ww'*result_DCC(:,:,index)*ww;
 end 
 
 

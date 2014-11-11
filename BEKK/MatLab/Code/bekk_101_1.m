@@ -44,7 +44,7 @@ for i=Var_startIndex:Var_lens
    Result_His_BEKK(index,1)=sqrt(ww'*Cov_PF*ww); % 
   
    result_BEKK(:,:,index)= C+ A(:,:,j)'*m_new'*m_new*A(:,:,j)+B(:,:,j)'*Cov_PF*B(:,:,j)
-   Result_bekk(index)=sqrt(ww'*result_BEKK(:,:,index)*ww);
+   Equity_Result_bekk101(index)=sqrt(ww'*result_BEKK(:,:,index)*ww);
 end 
 
 
