@@ -1,4 +1,4 @@
- subplot(3,1,1);
+ subplot(4,1,1);
  plot([Alternative_Result_His]);
  set(gca,'xticklabel',{'2013-04-09','2013-05-09','2013-06-09','2013-07-09','2013-08-09','2013-09-09','2013-10-09','2013-11-09','2013-12-09','2014-01-08','2014-02-08','2014-03-08','2014-04-08'});
  set(gca,'XTick',[1 22 44 66 88 110 132 154 176 198 220 242 261])
@@ -6,20 +6,28 @@
  title('Alternative Historical volatility');
  xlabel('Date');
  ylabel('volatility');
- subplot(3,1,2);
- plot(Alternative_Result_Factor101)
+ subplot(4,1,2);
+ plot(Alternative_Result_BEKK101)
  set(gca,'xticklabel',{'2013-04-09','2013-05-09','2013-06-09','2013-07-09','2013-08-09','2013-09-09','2013-10-09','2013-11-09','2013-12-09','2014-01-08','2014-02-08','2014-03-08','2014-04-08'});
  set(gca,'XTick',[1 22 44 66 88 110 132 154 176 198 220 242 261])
- title('Alternative Factor volatility');
- legend('Factor volatility');
+ title('Alternative BEKK101 volatility');
+ legend('BEKK101 volatility');
  xlabel('Date');
 ylabel('volatility');
-subplot(3,1,3);
- plot([Alternative_Result_His Alternative_Result_Factor101'])
+ subplot(4,1,3);
+ plot(Alternative_Result_Gogarch11)
+ set(gca,'xticklabel',{'2013-04-09','2013-05-09','2013-06-09','2013-07-09','2013-08-09','2013-09-09','2013-10-09','2013-11-09','2013-12-09','2014-01-08','2014-02-08','2014-03-08','2014-04-08'});
+ set(gca,'XTick',[1 22 44 66 88 110 132 154 176 198 220 242 261])
+ title('Alternative Gogarch11 volatility');
+ legend('Gogarch11 volatility');
+ xlabel('Date');
+ylabel('volatility');
+subplot(4,1,4);
+ plot([Alternative_Result_His Alternative_Result_BEKK101(end-259:end)' Alternative_Result_Gogarch11(end-259:end)'])
  set(gca,'xticklabel',{'2013-04-09','2013-05-09','2013-06-09','2013-07-09','2013-08-09','2013-09-09','2013-10-09','2013-11-09','2013-12-09','2014-01-08','2014-02-08','2014-03-08','2014-04-08'});
  set(gca,'XTick',[1 22 44 66 88 110 132 154 176 198 220 242 261])
  title('Alternative Historical volatility&Factor volatility');
- legend('Historical volatility','Factor volatility');
+ legend('Historical volatility','BEKK101 volatility','Gogarch11 volatility');
  xlabel('Date');
 ylabel('volatility');
 

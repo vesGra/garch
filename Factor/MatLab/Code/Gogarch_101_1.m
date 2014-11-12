@@ -27,6 +27,10 @@ for i=260:Var_lens
         newData(i-259,j)=epsilon;
    end
 end
-[parameters,ll,Ht,VCV,scores] = gogarch(newData,1,1);%(newData,numfactors,p,o,q);
+%[parameters,ll,Ht,VCV,scores] = gogarch(newData,1,1);%(newData,numfactors,p,o,q);
 
+for i=Var_lens-260-261:Var_lens-260
+    index=i-(Var_lens-260-262);
+    Alternative_Result_Gogarch11(index)=sqrt(ww'*Ht(:,:,i)*ww);
+end
  

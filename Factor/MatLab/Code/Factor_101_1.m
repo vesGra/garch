@@ -1,6 +1,6 @@
 % Factor
 clc;
-numfactors=3;
+numfactors=5;
 p=1;
 o=0;
 q=1;
