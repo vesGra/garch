@@ -1,6 +1,6 @@
 % Factor
 clc;
-numfactors=5;
+numfactors=4;
 p=1;
 o=0;
 q=1;
@@ -56,19 +56,22 @@ for i=Var_startIndex:Var_lens
   
     %[[w, pc] = pca(m_new,'cov');
     %[w, pc] = pca(m2,'cov');
-    weights = w(1:numfactors,:);
-    wf=w(:,1:numfactors);	
-    F = pc(:,1:numfactors);
-    F
-    weights
-    weights*F
+    weights = w(:,1:numfactors);	
+    %F = pc(end,1:numfactors);
+    %F=F'
     %erros=m_new2-F*weights;
     %omega=diag(mean(erros.^2));
    % erros=m_new2-F*weights;
-    erros=bsxfun(@minus,m_new2(end,:),weights*F);
-    H_omega=cov(erros);
-    omega=diag(H_omega,0);
+   error=[];
+   for t=1:262
+    F = pc(t,1:numfactors);
+    erros=bsxfun(@minus,m_new2(t,:)',weights*F');
+    errors(t,:)=erros';
+   end
+   H_omega=cov(errors);
+    omega=diag(H_omega,0);   
     omega=diag(omega);
+    omega=omega-weights*paraW*paraW'*weights';
     Ht=cov(F);
     ht=diag(Ht,0);
     

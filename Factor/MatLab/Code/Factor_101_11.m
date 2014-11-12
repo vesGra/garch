@@ -1,14 +1,17 @@
 % Factor
 clc;
-numfactors=5;
+numfactors=8;
 p=1;
 o=0;
 q=1;
 Var_startIndex=2349; % 
 %data&w
 Alternative_w=[1/5;1/5;1/5;1/5;1/5];
-ww=Alternative_w;
-data=Alternative_LP;
+OldPF_w=[0.15;0.1;0.05;0.3;0.2;0.1;0.02;0.02;0.02;0.02;0.02];
+ww=OldPF_w;
+data=OldPF_LP;
+%ww=Alternative_w;
+%data=Alternative_LP;
 Equity_w=[1/3;1/3;1/3];
 %ww=Equity_w;
 %data=Equity_LP;
@@ -47,7 +50,7 @@ for i=Var_startIndex:Var_lens
     index=i-Var_startIndex+1;  
     m2=data(i-261:i,:);
     Cov_PF=cov(m2);  
-    Alternative_Result_His(index,1)=sqrt(ww'*Cov_PF*ww); % 
+    Equity_Result_His(index,1)=sqrt(ww'*Cov_PF*ww); % 
     
     m_new2=newData(i-522:i-261,:);
     %m_new=m2;
@@ -56,19 +59,24 @@ for i=Var_startIndex:Var_lens
   
     %[[w, pc] = pca(m_new,'cov');
     %[w, pc] = pca(m2,'cov');
-    weights = w(1:numfactors,:);
-    wf=w(:,1:numfactors);	
-    F = pc(:,1:numfactors);
-    F
-    weights
-    weights*F
+    weights = w(:,1:numfactors);	
+    %F = pc(end,1:numfactors);
+    %F=F'
     %erros=m_new2-F*weights;
     %omega=diag(mean(erros.^2));
    % erros=m_new2-F*weights;
-    erros=bsxfun(@minus,m_new2(end,:),weights*F);
-    H_omega=cov(erros);
-    omega=diag(H_omega,0);
+   errors=[];
+   
+   for t=1:262
+    F = pc(t,1:numfactors);
+    erros=bsxfun(@minus,m_new2(t,:)',weights*F');
+    
+    errors(t,:)=erros';
+   end
+   H_omega=cov(errors);
+    omega=diag(H_omega,0);   
     omega=diag(omega);
+    %omega=omega-weights*paraW*paraW'*weights';
     Ht=cov(F);
     ht=diag(Ht,0);
     
@@ -85,7 +93,8 @@ for i=Var_startIndex:Var_lens
     Ht1=diag(ht1);
  
     H_Factor=weights * Ht1 * weights' + omega;   
-   Alternative_Result_Factor101(index)=sqrt(ww'*H_Factor*ww);
+    % H_Factor=weights * Ht1 * weights';   
+   Equity_Result_Factor101(index)=sqrt(ww'*H_Factor*ww);
    disp(i);
 end 
 
