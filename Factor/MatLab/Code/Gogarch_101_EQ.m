@@ -7,11 +7,11 @@ q=1;
 Var_startIndex=2349; % 
 %data&w
 Alternative_w=[1/5;1/5;1/5;1/5;1/5];
-ww=Alternative_w;
-data=Alternative_LP;
+%ww=Alternative_w;
+%data=Alternative_LP;
 Equity_w=[1/3;1/3;1/3];
-%ww=Equity_w;
-%data=Equity_LP;
+ww=Equity_w;
+data=Equity_LP;
 [Var_lens,Var_cols]=size(data); %
 mdata=data(2:Var_startIndex,:);
 k=Var_cols;
@@ -28,13 +28,13 @@ for i=260:Var_lens
    end
 end
 % 用前8年，算参数
-%[parameters,ll,Ht,VCV,scores,Z,Zinv] = gogarch(newData(1:end-261,:),1,1);%(newData,numfactors,p,o,q);
+[parameters,ll,Ht,VCV,scores,Z,Zinv] = gogarch(newData(1:end-261,:),1,1);%(newData,numfactors,p,o,q);
 
 paraA=[];
 paraB=[];
 paraW=[];
-paraA=parameters(26:30);
-paraB=parameters(31:35);
+paraA=parameters(10:12);
+paraB=parameters(13:15);
 
 paraW=bsxfun(@minus,1,bsxfun(@plus,paraA,paraB));
 

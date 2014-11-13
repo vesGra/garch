@@ -1,6 +1,6 @@
 % Factor
 clc;
-numfactors=4;
+numfactors=3;
 p=1;
 o=0;
 q=1;
@@ -62,7 +62,7 @@ for i=Var_startIndex:Var_lens
     %erros=m_new2-F*weights;
     %omega=diag(mean(erros.^2));
    % erros=m_new2-F*weights;
-   error=[];
+   errors=[];
    for t=1:262
     F = pc(t,1:numfactors);
     erros=bsxfun(@minus,m_new2(t,:)',weights*F');
@@ -78,9 +78,9 @@ for i=Var_startIndex:Var_lens
     ft=F(end,:,:);
     ft=ft';
     
-    htsub1=bsxfun(@times,paraA.^2,ft.^2);
+    htsub1=bsxfun(@times,paraA,ft.^2);
 
-    htsub2=bsxfun(@times,paraB.^2,ht);
+    htsub2=bsxfun(@times,paraB,ht);
 
     ht1=bsxfun(@plus,paraW,htsub1);
  

@@ -10,9 +10,12 @@ O=0;
 Q=1;
 Var_startIndex=2349; % 
 %data&w
+OldPF_w=[0.15;0.1;0.05;0.3;0.2;0.1;0.02;0.02;0.02;0.02;0.02];
+ww=OldPF_w;
+data=OldPF_LP;
 Equity_w=[1/3;1/3;1/3];
-ww=Equity_w;
-data=Equity_LP;
+%ww=Equity_w;
+%data=Equity_LP;
 [Var_lens,Var_cols]=size(data); %
 mdata=data(2:Var_startIndex,:);
 k=Var_cols;
@@ -32,8 +35,8 @@ for i=260:Var_lens
 end
 
 
-[PARAMETERS,LL,HT,VCV,SCORES] = bekk(newData,[],P,O,Q);
-[C,A,G,B] = bekk_parameter_transform(PARAMETERS,1,0,1,3,1);
+% [PARAMETERS,LL,HT,VCV,SCORES] = bekk(newData,[],P,O,Q);
+[C,A,G,B] = bekk_parameter_transform(PARAMETERS,1,0,1,11,1);
 j=1;
 for i=Var_startIndex:Var_lens
     index=i-Var_startIndex+1;  
@@ -41,10 +44,10 @@ for i=Var_startIndex:Var_lens
     m_new=newData(i-261-1,:);
     Cov_PF=cov(m2);  
   
-   %Result_His_BEKK(index,1)=sqrt(ww'*Cov_PF*ww); % 
+   OldPF_Result_His(index,1)=sqrt(ww'*Cov_PF*ww); % 
   
    result_BEKK(:,:,index)= C+ A(:,:,j)'*m_new'*m_new*A(:,:,j)+B(:,:,j)'*Cov_PF*B(:,:,j)
-   Equity_Result_bekk101Self(index)=sqrt(ww'*result_BEKK(:,:,index)*ww);
+   OldPF_Result_bekk101Self(index)=sqrt(ww'*result_BEKK(:,:,index)*ww);
 end 
 
 

@@ -83,9 +83,9 @@ for i=Var_startIndex:Var_lens
     ft=F(end,:,:);
     ft=ft';
     
-    htsub1=bsxfun(@times,paraA.^2,ft.^2);
+     htsub1=bsxfun(@times,paraA,ft.^2);
 
-    htsub2=bsxfun(@times,paraB.^2,ht);
+    htsub2=bsxfun(@times,paraB,ht);
 
     ht1=bsxfun(@plus,paraW,htsub1);
  
