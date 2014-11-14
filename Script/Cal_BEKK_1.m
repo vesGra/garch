@@ -28,7 +28,6 @@ newData=[];
 for i=260:Var_lens
    for j=1: Var_cols
        tempData=data(i-259:i,j);
-        Cov_PF=cov(tempData);  
         mu=mean(tempData);
         epsilon=bsxfun(@minus,tempData(end,:,:),mu);
         newData(i-259,j)=epsilon;
