@@ -2,12 +2,12 @@
 clear;
 clc;
 % 是否计算历史
-his=1;
-DCC1011=1;
-DCC101Every=0;
-BEKK101=1;
-Factor101=1;
-Gogarch11=1;
+his=0;
+DCC1011=0;
+DCC101Every=1;
+BEKK101=0;
+Factor101=0;
+Gogarch11=0;
 %初始化数据
 InitData;
 
@@ -30,10 +30,10 @@ if DCC1011==1
     [OldPF_DCC101_1_Defensive,OldPF_DCC101_1_Offensive]=Cal_DCC_1(OldPF_LP,[],OldPF_w,OldPF_w2,'OldPF',1,0,1);
 end
 if DCC101Every==1
-    [Alternative_DCC101_1]=Cal_DCC_Every(Alternative_LP,[],Alternative_w,[],'Alternative',1,0,1);
-    [Equity_DCC101_1]=Cal_DCC_Every(Equity_LP,[],Equity_w,[],'Equity',1,0,1);
-    [FixIncome_DCC101_1]=Cal_DCC_Every(FixIncome_LP,[],FixIncome_w,[],'FixIncome',1,0,1);
-    [NewPF_DCC101_1_Defensive,NewPF_DCC101_1_Offensive]=Cal_DCC_Every(NewPF_LP,[],NewPF_w,NewPF_w2,'NewPF',1,0,1);
+    %[Alternative_DCC101_1]=Cal_DCC_Every(Alternative_LP,[],Alternative_w,[],'Alternative',1,0,1);
+    %[Equity_DCC101_1]=Cal_DCC_Every(Equity_LP,[],Equity_w,[],'Equity',1,0,1);
+    %[FixIncome_DCC101_1]=Cal_DCC_Every(FixIncome_LP,[],FixIncome_w,[],'FixIncome',1,0,1);
+    %[NewPF_DCC101_1_Defensive,NewPF_DCC101_1_Offensive]=Cal_DCC_Every(NewPF_LP,[],NewPF_w,NewPF_w2,'NewPF',1,0,1);
     [OldPF_DCC101_1_Defensive,OldPF_DCC101_1_Offensive]=Cal_DCC_Every(OldPF_LP,[],OldPF_w,OldPF_w2,'OldPF',1,0,1);
 end
 %BEKK
