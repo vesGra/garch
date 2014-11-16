@@ -1,4 +1,4 @@
-function [parameters,ll,Ht,VCV,scores] = gogarch(data,p,q,gjrType,type,startingVals,options)
+function [parameters,ll,Ht,VCV,scores,Z] = gogarch(data,p,q,gjrType,type,startingVals,options)
 % OGARCH(p,q) and GOGARCH(p,q) multivarate volatility model estimation
 %
 % USAGE:
@@ -226,9 +226,9 @@ if isGogarch
         offset = offset + count;
     end
     parameters = fmincon(@gogarch_likelihood,startingVals,A,b,[],[],LB,UB,[],options,data,p,q,gjrType,P,L,false,false);
-    [ll,~,Ht] = gogarch_likelihood(parameters,data,p,q,gjrType,P,L,false,false);
+    [ll,~,Ht,Z] = gogarch_likelihood(parameters,data,p,q,gjrType,P,L,false,false);
 else
-    [ll,~,Ht] = gogarch_likelihood(parameters,data,p,q,gjrType,P,L,true,false);
+    [ll,~,Ht,Z] = gogarch_likelihood(parameters,data,p,q,gjrType,P,L,true,false);
 end
 ll = -ll;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

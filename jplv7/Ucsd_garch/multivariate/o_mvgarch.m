@@ -132,6 +132,7 @@ end
 % Input Argument Checking
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [w, pc] = pca(data,'outer');
+%[w, pc] = pca(data,'cov');
 
 
 
@@ -163,7 +164,6 @@ else
 end
 
 ht = zeros(k,k,t);
-
 for i=1:t
     ht(:,:,i) = weights' * diag(htMat(i,:)) * weights + omega;
 end
@@ -174,3 +174,4 @@ for i=1:numfactors;
     parameters(count:count+p(i)+o(i)+q(i))=tarchParameters{i};
     count = count + 1 + p(i) + o(i) + q(i);
 end
+%parameters=[parameters' diag(omega)'];

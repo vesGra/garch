@@ -50,10 +50,10 @@ for i=Var_startIndex:Var_lens
 end 
 % 保存数据文件
 if ~isempty(weight2)
-    save(strcat('../Result/',name,'_BEKK',num2str(p),num2str(o),num2str(q),'_Every_Defensive'),'BEKK_Result1');
-    save(strcat('../Result/',name,'_BEKK',num2str(p),num2str(o),num2str(q),'_Every_Offensive'),'BEKK_Result2');   
+    save(strcat('../Result/',name,'_BEKK',num2str(p),num2str(o),num2str(q),'_1_Defensive'),'BEKK_Result1');
+    save(strcat('../Result/',name,'_BEKK',num2str(p),num2str(o),num2str(q),'_1_Offensive'),'BEKK_Result2');   
 else
-    save(strcat('../Result/',name,'_BEKK',num2str(p),num2str(o),num2str(q),'_Every'),'BEKK_Result1');
+    save(strcat('../Result/',name,'_BEKK',num2str(p),num2str(o),num2str(q),'_1'),'BEKK_Result1');
 end
 
 

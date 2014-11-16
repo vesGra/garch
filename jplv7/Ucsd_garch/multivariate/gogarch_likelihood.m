@@ -1,4 +1,4 @@
-function [ll,lls,Ht] = gogarch_likelihood(parameters,data,p,q,gjrType,P,L,isOgarch,isInference)
+function [ll,lls,Ht,Z] = gogarch_likelihood(parameters,data,p,q,gjrType,P,L,isOgarch,isInference)
 % Log-likelihood for use in estimation GOGARCH and OGARCH models
 %
 % USAGE:

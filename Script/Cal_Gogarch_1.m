@@ -31,7 +31,7 @@ for i=260:Var_lens
    end
 end
 % 用前8年，算参数
-[parameters,ll,Ht,VCV,scores,Z,Zinv] = gogarch(newData(1:end-261,:),p,q);%(newData,numfactors,p,o,q);
+[parameters,ll,Ht,VCV,scores,Z] = gogarch(newData(1:end-261,:),p,q);%(newData,numfactors,p,o,q);
 
 paraA=[];
 paraB=[];

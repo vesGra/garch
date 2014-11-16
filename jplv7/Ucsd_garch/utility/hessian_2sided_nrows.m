@@ -42,7 +42,7 @@ try
     feval(f,x,varargin{:});
 catch FE
     errtxt=['There was an error evaluating the function.  Please check the arguements.  The specific error was:' FE.message];
-    error(errtxt);
+    %error(errtxt);
 end
 
 
