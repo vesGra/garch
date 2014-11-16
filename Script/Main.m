@@ -59,7 +59,7 @@ end
 if Factor101==1
     [Alternative_Factor101_1]=Cal_Factor_1(Alternative_LP,[],Alternative_w,[],'Alternative',1,0,1,3);
     [Equity_Factor101_1]=Cal_Factor_1(Equity_LP,[],Equity_w,[],'Equity',1,0,1,2);
-    [FixIncome_Factor101_1]=Cal_Factor_1(FixIncome_LP(262:end,:),2088,FixIncome_w,[],'FixIncome',1,0,1,2);
+    [FixIncome_Factor101_1]=Cal_Factor_1(FixIncome_LP,[],FixIncome_w,[],'FixIncome',1,0,1,2);
     [NewPF_Factor101_1_Defensive,NewPF_Factor101_1_Offensive]=Cal_Factor_1(NewPF_LP,[],NewPF_w,NewPF_w2,'NewPF',1,0,1,2);
     [OldPF_Factor101_1_Defensive,OldPF_Factor101_1_Offensive]=Cal_Factor_1(OldPF_LP,[],OldPF_w,OldPF_w2,'OldPF',1,0,1,5);
 end
@@ -74,9 +74,9 @@ end
 
 %Factor Every
 if Factor101Every==1
-    [Alternative_Factor101_Every]=Cal_Factor_Every(Alternative_LP,[],Alternative_w,[],'Alternative',1,0,1,3);
-    [Equity_Factor101_Every]=Cal_Factor_Every(Equity_LP,[],Equity_w,[],'Equity',1,0,1,2);
-    [FixIncome_Factor101_Every]=Cal_Factor_Every(FixIncome_LP(262:end,:),2088,FixIncome_w,[],'FixIncome',1,0,1,2);
+     [Alternative_Factor101_Every]=Cal_Factor_Every(Alternative_LP,[],Alternative_w,[],'Alternative',1,0,1,3);
+     [Equity_Factor101_Every]=Cal_Factor_Every(Equity_LP,[],Equity_w,[],'Equity',1,0,1,2);
+    [FixIncome_Factor101_Every]=Cal_Factor_Every(FixIncome_LP,[],FixIncome_w,[],'FixIncome',1,0,1,2);
     [NewPF_Factor101_Every_Defensive,NewPF_Factor101_Every_Offensive]=Cal_Factor_Every(NewPF_LP,[],NewPF_w,NewPF_w2,'NewPF',1,0,1,2);
     [OldPF_Factor101_Every_Defensive,OldPF_Factor101_Every_Offensive]=Cal_Factor_Every(OldPF_LP,[],OldPF_w,OldPF_w2,'OldPF',1,0,1,5);
 end

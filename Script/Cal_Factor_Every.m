@@ -39,7 +39,7 @@ Equity_Factor_PARAMETERS=[];
 ht=[];
 for i=Var_startIndex:Var_lens
     index=i-Var_startIndex+1; 
-       
+    index
     mData=newData(index+261*5:index+261*8,:);
     m_new2=newData(i-520:i-259,:);
    [PARAMETERS,HT,W,PC]= o_mvgarch(mData,numfactors,p,o,q);
