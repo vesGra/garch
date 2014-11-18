@@ -25,12 +25,12 @@ k=Var_cols;
 % 1
 % new data 
 newData=[];
-for i=260:Var_lens
+for i=261:Var_lens
    for j=1: Var_cols
-       tempData=data(i-259:i,j);
+       tempData=data(i-260:i,j);
         mu=mean(tempData);
         epsilon=bsxfun(@minus,tempData(end,:,:),mu);
-        newData(i-259,j)=epsilon;
+        newData(i-260,j)=epsilon;
    end
 end
 [PARAMETERS,LL,HT,VCV,SCORES] = bekk(newData,[],p,o,q);
@@ -38,8 +38,8 @@ end
 j=1;
 for i=Var_startIndex:Var_lens
     index=i-Var_startIndex+1;  
-    m2=data(i-261:i,:);
-    m_new=newData(i-261-1,:);
+    m2=data(i-261:i-1,:);
+    m_new=newData(i-260-1,:);
     Cov_PF=cov(m2);  
     
    result_BEKK(:,:,index)= C+ A(:,:,j)'*m_new'*m_new*A(:,:,j)+B(:,:,j)'*Cov_PF*B(:,:,j);

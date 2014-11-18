@@ -21,13 +21,12 @@ k=Var_cols;
 % 1
 % new data 
 newData=[];
-for i=260:Var_lens
+for i=261:Var_lens
    for j=1: Var_cols
-       tempData=data(i-259:i,j);
-        Cov_PF=cov(tempData);  
+       tempData=data(i-260:i,j);
         mu=mean(tempData);
         epsilon=bsxfun(@minus,tempData(end,:,:),mu);
-        newData(i-259,j)=epsilon;
+        newData(i-260,j)=epsilon;
    end
 end
 % 用前8年，算参数
@@ -44,9 +43,9 @@ paraW=bsxfun(@minus,1,bsxfun(@plus,paraA,paraB));
 %2
 for i=Var_startIndex:Var_lens
    index=i-Var_startIndex+1;       
-   m_new2=newData(i-520:i-259,:);
+   m_new2=newData(i-260-1-260:i-260-1,:);
    errors=[];
-   for t=1:262    
+   for t=1:261    
     erros=inv(Z)*m_new2(t,:)';
     errors(t,:)=erros';
    end

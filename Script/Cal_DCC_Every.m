@@ -26,13 +26,12 @@ mdata=data(1:Var_startIndex,:);
 k=Var_cols;
 % new data 
 newData=[];
-for i=260:Var_lens
+for i=261:Var_lens
    for j=1: Var_cols
-       tempData=data(i-259:i,j);
-        Cov_PF=cov(tempData);  
+       tempData=data(i-260:i,j);
         mu=mean(tempData);
         epsilon=bsxfun(@minus,tempData(end,:,:),mu);
-        newData(i-259,j)=epsilon;
+        newData(i-260,j)=epsilon;
    end
 end
 % save DCC Result
@@ -47,8 +46,8 @@ ht=[];
 for i=Var_startIndex:Var_lens
     index=i-Var_startIndex+1; 
        
-    mData=newData(index+261*5:index+261*8,:);
-   
+    %mData=newData(index+261*5:index+261*8,:);
+   mData=newData(i-260-1-261*3+1:i-260-1,:);
     % 1
     [PARAMETERS,LL,HtTemp,VCV,SCORES,DIAGNOSTICS,RRt,QQt,Ao,Go,Bo,Ro]=dcc(mData,[],p,o,q,m,l,n,2,'2-stage','none');
     
@@ -91,7 +90,8 @@ for i=Var_startIndex:Var_lens
     intcept=bsxfun(@times,corr_ivech(Ro),scale);
   
     for j=1:p       
-        m2= newData(i-520-j+1:i-259-j+1,:);%mData(i-261-j+1:i-j+1,:);
+        %m2= newData(i-520-j+1:i-259-j+1,:);%mData(i-261-j+1:i-j+1,:);mData
+        m2= mData(end-260-j+1:end-j+1,:);
         Ht=cov(m2);
         Rt=corr(m2);
         dht=diag(Ht,0);

@@ -24,13 +24,12 @@ k=Var_cols;
 % new data 
 newData=[];
 
-for i=260:Var_lens
+for i=262:Var_lens
    for j=1: Var_cols
-       tempData=data(i-259:i,j);
-        Cov_PF=cov(tempData);  
+       tempData=data(i-260:i,j);
         mu=mean(tempData);
         epsilon=bsxfun(@minus,tempData(end,:,:),mu);
-        newData(i-259,j)=epsilon;
+        newData(i-261,j)=epsilon;
    end
 end
 % save BEKK Result

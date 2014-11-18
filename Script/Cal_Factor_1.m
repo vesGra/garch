@@ -27,12 +27,12 @@ end
 % 1
 % new data 
 newData=[];
-for i=260:Var_lens
+for i=261:Var_lens
    for j=1: Var_cols
-       tempData=data(i-259:i,j);
+       tempData=data(i-260:i,j);
         mu=mean(tempData);
         epsilon=bsxfun(@minus,tempData(end,:,:),mu);
-        newData(i-259,j)=epsilon;
+        newData(i-260,j)=epsilon;
    end
 end
 [PARAMETERS,HT,W,PC]= o_mvgarch(newData,numfactors,p,o,q);
@@ -52,15 +52,15 @@ paraB=paraB';
 %2
 for i=Var_startIndex:Var_lens
     index=i-Var_startIndex+1;  
-   
-    m_new2=newData(i-520:i-259,:);
+   %m_new2=newData(i-520:i-259,:);
+    m_new2=newData(i-260-1-260:i-260-1,:);
     
     [w, pc] = pca(m_new2,'outer');
 
     weights = w(:,1:numfactors);	
    
    errors=[];
-   for t=1:262
+   for t=1:261
     F = pc(t,1:numfactors);
     erros=bsxfun(@minus,m_new2(t,:)',weights*F');
     errors(t,:)=erros';

@@ -9,8 +9,8 @@ BEKK101=0;
 Factor101=0;
 Gogarch11=0;
 BEKK101Every=0;
-Factor101Every=1;
-Gogarch11Every=0;
+Factor101Every=0;
+Gogarch11Every=1;
 %初始化数据
 InitData;
 

@@ -25,13 +25,12 @@ if ~isempty(numfactors) && numfactors>k
 end
 % new data 
 newData=[];
-for i=260:Var_lens
+for i=261:Var_lens
    for j=1: Var_cols
-       tempData=data(i-259:i,j);
-        Cov_PF=cov(tempData);  
+       tempData=data(i-260:i,j);
         mu=mean(tempData);
         epsilon=bsxfun(@minus,tempData(end,:,:),mu);
-        newData(i-259,j)=epsilon;
+        newData(i-260,j)=epsilon;
    end
 end
 % save Factor Result
@@ -39,9 +38,10 @@ Equity_Factor_PARAMETERS=[];
 ht=[];
 for i=Var_startIndex:Var_lens
     index=i-Var_startIndex+1; 
-    index
-    mData=newData(index+261*5:index+261*8,:);
-    m_new2=newData(i-520:i-259,:);
+    %mData=newData(index+261*5:index+261*8,:);
+    mData=newData(i-260-261*3+1:i-260-1,:);
+    %m_new2=newData(i-520:i-259,:);
+    m_new2=mData(end-260:end,:);
    [PARAMETERS,HT,W,PC]= o_mvgarch(mData,numfactors,p,o,q);
     Equity_Factor_PARAMETERS(:,:,index)=PARAMETERS;
     paraW=[];
@@ -60,7 +60,7 @@ for i=Var_startIndex:Var_lens
     weights = w(:,1:numfactors);	
    
    errors=[];
-   for t=1:262
+   for t=1:261
     F = pc(t,1:numfactors);
     erros=bsxfun(@minus,m_new2(t,:)',weights*F');
     errors(t,:)=erros';

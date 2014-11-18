@@ -9,28 +9,38 @@ data=[];
 data2=[];
 chartTitle=strcat(name,' volatility');
 chartLegend=[];
+His1=[];
+His2=[];
 %Load Datas 'Historical'
 %1 His
 model='His'; 
-type='His';    
-[Data,Data2,flag] = LoadData(model,type,name,weightCount);
-if(flag==1)
-    chartLegend=strcat(chartLegend,'''','Historical','''',',');
-    data=[data Data];
-    data2=[data2 Data2];
-end
+type='His';      
+[His1,His2,flag] = LoadData(model,type,name,weightCount);
+
 %2 DCC101_1
 model='DCC'; 
-type='DCC101_1';    
+type='DCC101_1';      
 [Data,Data2,flag] = LoadData(model,type,name,weightCount)
 if(flag==1)
     chartLegend=strcat(chartLegend,'''','DCC101_1','''',',');   
     data=[data Data'];
     data2=[data2 Data2'];
+    if(weightCount==1)
+      display(strcat('=================',name,'   ',type,'=================')); 
+      tempResult=VFLF(His1, Data');
+      Result1=[Result1 tempResult'];
+    elseif(weightCount==2)
+      display(strcat('=================',name,'   ',type,'_Defensive','=================')); %Offensive
+      tempResult=VFLF(His1, Data');
+      Result1=[Result1 tempResult'];
+      display(strcat('=================',name,'   ',type,'_Offensive','=================')); %
+      tempResult=VFLF(His2, Data2');
+      Result2=[Result2 tempResult'];
+    end    
 end
 %3 DCC101_Every
 model='DCC'; 
-type='DCC101_Every';    
+type='DCC101_Every';   
 [Data,Data2,flag]  = LoadData(model,type,name,weightCount)
 if(flag==1)
     chartLegend=[chartLegend,type,','];
@@ -40,24 +50,32 @@ end
 
 %4 BEKK101_1
 model='BEKK'; 
-type='BEKK101_1';   
+type='BEKK101_1';  
 [Data,Data2,flag]  = LoadData(model,type,name,weightCount)
 if(flag==1)
     chartLegend=strcat(chartLegend,'''',type,'''',',');
     data=[data Data'];
     data2=[data2 Data2'];
 end
+%5 BEKK101_1
+model='BEKK'; 
+type='BEKK101_Every'; 
 
-%5 Factor101_1
+%6 Factor101_1
 model='Factor'; 
-type='Factor101_1';    
+type='Factor101_1';     
 [Data,Data2,flag]  = LoadData(model,type,name,weightCount)
 if(flag==1)
     chartLegend=strcat(chartLegend,'''',type,'''',',');
     data=[data Data'];
     data2=[data2 Data2'];
 end
-%6 Gogarch11_1
+%7 Factor101_1
+model='Factor'; 
+type='Factor101_Every'; 
+
+
+%8 Gogarch11_1
 model='Gogarch'; 
 type='Gogarch11_1'; 
 [Data,Data2,flag]  = LoadData(model,type,name,weightCount)
@@ -66,7 +84,13 @@ if(flag==1)
     data=[data Data'];
     data2=[data2 Data2'];
 end
+%9 Gogarch11_1
+model='Gogarch'; 
+type='Gogarch11_Every'; 
+
+
 chartLegend=strcat(chartLegend,'''',' ','''');
+
 %7 chart
 figure1=figure('Position',[0 30 1366 608]);
 set(figure1,'visible','off');

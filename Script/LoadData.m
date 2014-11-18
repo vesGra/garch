@@ -12,7 +12,7 @@ try
        tempData=load(strcat('../Result/',name,'_',type,'_Defensive.mat'));
        Data=eval(strcat('[tempData.',model,'_Result1];'));
        tempData2=load(strcat('../Result/',name,'_',type,'_Offensive.mat'));
-       Data2=eval(strcat('[tempData.',model,'_Result2];'));
+       Data2=eval(strcat('[tempData2.',model,'_Result2];'));
     end
 catch ME
     %error('文件不存在!');

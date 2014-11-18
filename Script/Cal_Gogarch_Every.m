@@ -19,13 +19,12 @@ end
 k=Var_cols;
 % new data 
 newData=[];
-for i=260:Var_lens
+for i=261:Var_lens
    for j=1: Var_cols
-       tempData=data(i-259:i,j);
-        Cov_PF=cov(tempData);  
+       tempData=data(i-260:i,j);
         mu=mean(tempData);
         epsilon=bsxfun(@minus,tempData(end,:,:),mu);
-        newData(i-259,j)=epsilon;
+        newData(i-260,j)=epsilon;
    end
 end
 % save Gogarch Result
@@ -36,8 +35,8 @@ ht=[];
 for i=Var_startIndex:Var_lens
     index=i-Var_startIndex+1; 
        
-    mData=newData(index+261*5:index+261*8,:);
-    m_new2=newData(i-520:i-259,:);
+    mData=newData(i-260-261*3+1:i-260-1,:);
+    m_new2=mData(end-260:end,:);
    [parameters,ll,Ht,VCV,scores,Z] = gogarch(mData,p,q);%(newData,numfactors,p,o,q);
     Equity_Gogarch_PARAMETERS(:,:,index)=parameters;
     Equity_Gogarch_Z(:,:,:,index)=Z;
@@ -48,7 +47,7 @@ for i=Var_startIndex:Var_lens
     paraB=parameters(end-k+1:end);
     paraW=bsxfun(@minus,1,bsxfun(@plus,paraA,paraB));
     errors=[];
-   for t=1:262    
+   for t=1:261    
     erros=inv(Z)*m_new2(t,:)';
     errors(t,:)=erros';
    end
@@ -72,16 +71,16 @@ for i=Var_startIndex:Var_lens
     disp(i);
 end 
 % save Gogarch Result 
-save(strcat('../modelResults/',name,'_Gogarch',num2str(p),num2str(o),num2str(q),'_PARAMETERS'),'Equity_Gogarch_PARAMETERS');
-save(strcat('../modelResults/',name,'_Gogarch',num2str(p),num2str(o),num2str(q),'_Z'),'Equity_Gogarch_Z');
+save(strcat('../modelResults/',name,'_Gogarch',num2str(p),num2str(q),'_PARAMETERS'),'Equity_Gogarch_PARAMETERS');
+save(strcat('../modelResults/',name,'_Gogarch',num2str(p),num2str(q),'_Z'),'Equity_Gogarch_Z');
 
 
 % 保存数据文件
 if ~isempty(weight2)
-    save(strcat('../Result/',name,'_Gogarch',num2str(p),num2str(o),num2str(q),'_Every_Defensive'),'Gogarch_Result1');
-    save(strcat('../Result/',name,'_Gogarch',num2str(p),num2str(o),num2str(q),'_Every_Offensive'),'Gogarch_Result2');   
+    save(strcat('../Result/',name,'_Gogarch',num2str(p),num2str(q),'_Every_Defensive'),'Gogarch_Result1');
+    save(strcat('../Result/',name,'_Gogarch',num2str(p),num2str(q),'_Every_Offensive'),'Gogarch_Result2');   
 else
-    save(strcat('../Result/',name,'_Gogarch',num2str(p),num2str(o),num2str(q),'_Every'),'Gogarch_Result1');
+    save(strcat('../Result/',name,'_Gogarch',num2str(p),num2str(q),'_Every'),'Gogarch_Result1');
 end
 
 

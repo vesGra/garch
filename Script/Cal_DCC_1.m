@@ -26,13 +26,12 @@ mdata=data(1:Var_startIndex,:);
 k=Var_cols;
 % new data 
 newData=[];
-for i=260:Var_lens
+for i=261:Var_lens
    for j=1: Var_cols
-       tempData=data(i-259:i,j);
-        Cov_PF=cov(tempData);  
+       tempData=data(i-260:i,j);
         mu=mean(tempData);
         epsilon=bsxfun(@minus,tempData(end,:,:),mu);
-        newData(i-259,j)=epsilon;
+        newData(i-260,j)=epsilon;
    end
 end
 % 1
@@ -60,7 +59,7 @@ for i=Var_startIndex:Var_lens
     %m2=data(i-261:i,:);
     %Cov_PF=cov(m2);
    
-    n=newData(i-520:i-259,:);
+    n=newData(i-260-1-260:i-260-1,:);
     Ht=cov(n);
     Rt=corr(n);
     dht=diag(Ht,0);
