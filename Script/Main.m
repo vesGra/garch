@@ -2,7 +2,7 @@
 clear;
 clc;
 % 是否计算历史
-his=0;
+his=1;
 DCC1011=0;
 DCC101Every=0;
 BEKK101=0;
@@ -10,7 +10,7 @@ Factor101=0;
 Gogarch11=0;
 BEKK101Every=0;
 Factor101Every=0;
-Gogarch11Every=1;
+Gogarch11Every=0;
 %初始化数据
 InitData;
 

@@ -35,7 +35,7 @@ for i=261:Var_lens
    end
 end
 % 1
-[PARAMETERS,LL,HtTemp,VCV,SCORES,DIAGNOSTICS,RRt,QQt,Ao,Go,Bo,Ro]=dcc(newData,[],p,o,q,m,l,n,2,'2-stage','none');
+[PARAMETERS,LL,HtTemp,VCV,SCORES,DIAGNOSTICS,RRt,QQt,Ao,Go,Bo,Ro]=dcc(newData(1:end-261,:),[],p,o,q,m,l,n,2,'2-stage','none');
 
 gScale=DIAGNOSTICS.gScale;   
 scale = (1-sum(Ao)-sum(Bo)) - gScale*sum(Go);

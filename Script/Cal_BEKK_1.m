@@ -33,7 +33,7 @@ for i=261:Var_lens
         newData(i-260,j)=epsilon;
    end
 end
-[PARAMETERS,LL,HT,VCV,SCORES] = bekk(newData,[],p,o,q);
+[PARAMETERS,LL,HT,VCV,SCORES] = bekk(newData(1:end-261,:),[],p,o,q);
 [C,A,G,B] = bekk_parameter_transform(PARAMETERS,1,0,1,k,1);
 j=1;
 for i=Var_startIndex:Var_lens

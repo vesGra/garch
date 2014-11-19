@@ -35,7 +35,7 @@ for i=261:Var_lens
         newData(i-260,j)=epsilon;
    end
 end
-[PARAMETERS,HT,W,PC]= o_mvgarch(newData,numfactors,p,o,q);
+[PARAMETERS,HT,W,PC]= o_mvgarch(newData(1:end-261,:),numfactors,p,o,q);
 
 paraW=[];
 paraA=[];
@@ -68,7 +68,7 @@ for i=Var_startIndex:Var_lens
    H_omega=cov(errors);
     omega=diag(H_omega,0);   
     omega=diag(omega);
-    omega=omega-weights*paraW*paraW'*weights';
+    %omega=omega-weights*paraW*paraW'*weights';
     Ht=cov(F);
     ht=diag(Ht,0);
     
