@@ -27,15 +27,21 @@ end
 % 1
 % new data 
 newData=[];
+newData_F=[];
+sigma=[];
 for i=261:Var_lens
    for j=1: Var_cols
        tempData=data(i-260:i,j);
         mu=mean(tempData);
+        sigma(i-260,j)=sqrt(var(tempData));
+        
         epsilon=bsxfun(@minus,tempData(end,:,:),mu);
         newData(i-260,j)=epsilon;
+        
+        newData_F(i-260,j)=(bsxfun(@rdivide,newData(i-260,j)',sigma(i-260,j)'))';
    end
 end
-[PARAMETERS,HT,W,PC]= o_mvgarch(newData(1:end-261,:),numfactors,p,o,q);
+[PARAMETERS,HT,W,PC]= o_mvgarch( newData_F(1:end-260,:),numfactors,p,o,q);
 
 paraW=[];
 paraA=[];
@@ -50,15 +56,15 @@ paraA=paraA';
 paraB=paraB';
  
 %2
+%sigma=[]
 for i=Var_startIndex:Var_lens
     index=i-Var_startIndex+1;  
    %m_new2=newData(i-520:i-259,:);
     m_new2=newData(i-260-1-260:i-260-1,:);
-    
-    [w, pc] = pca(m_new2,'outer');
+    m_new2_F=newData_F(i-260-1-260:i-260-1,:);
+    [w, pc] = pca(m_new2_F,'outer');
 
-    weights = w(:,1:numfactors);	
-   
+    weights = bsxfun(@times,w(:,1:numfactors),sigma(i-260-1,:)');	
    errors=[];
    for t=1:261
     F = pc(t,1:numfactors);
@@ -68,7 +74,6 @@ for i=Var_startIndex:Var_lens
    H_omega=cov(errors);
     omega=diag(H_omega,0);   
     omega=diag(omega);
-    %omega=omega-weights*paraW*paraW'*weights';
     Ht=cov(F);
     ht=diag(Ht,0);
     
@@ -84,7 +89,7 @@ for i=Var_startIndex:Var_lens
     ht1=bsxfun(@plus,ht1,htsub2);
     Ht1=diag(ht1);
  
-    H_Factor=weights * Ht1 * weights' + omega;   
+    H_Factor=weights * Ht1 * weights' ;%+ omega;   
     Factor_Result1(index)=sqrt(weight1'*H_Factor*weight1);
     if ~isempty(weight2)
         Factor_Result2(index)=sqrt(weight2'*H_Factor*weight2);
