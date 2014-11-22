@@ -4,7 +4,7 @@ function [Factor_Result1,Factor_Result2] = Cal_Factor_Every(data,Var_startIndex,
 % 这个是采用动态的parameters，即parameters根据每条数据的前9年计算而出
 % Ht和Rt采用自己计算方式。
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-YC=YC+1;
+%YC=YC+1;
 if isempty(p)
     p=1;
 end
@@ -32,9 +32,15 @@ sigma=[];
 % save Factor Result
 Equity_Factor_PARAMETERS=[];
 ht=[];
+[lens,cols]=size(newData_F);
 for i=Var_startIndex:Var_lens
     index=i-Var_startIndex+1; 
-    mData=newData_F(i-260-261*YC+1:i-260-1,:);  
+    if (i-260-261*YC+1)<1
+        subIndex=1;
+    else
+        subIndex=i-260-261*YC+1;
+    end
+    mData=newData_F(subIndex:i-260-1,:);  
     m_new2=newData(i-260-1-260:i-260-1,:);
     m_new2_F=newData_F(i-260-1-260:i-260-1,:);
     sigma_F=sigma(i-260-1-260:i-260-1,:);

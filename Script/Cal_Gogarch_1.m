@@ -17,6 +17,8 @@ end
 
 [Var_lens,Var_cols]=size(data); %
 k=Var_cols;
+
+offset=k*(k-1)/2;
 % 1
 % new data 
 [newData,newData_F,sigma] = MakeNewData_F(data);
@@ -28,6 +30,10 @@ paraB=[];
 paraW=[];
 paraA=parameters(end-3*k+1:end-2*k);
 paraB=parameters(end-k+1:end);
+for i=1:k
+    paraA(i)=parameters(offset+(i-1)*(p+q)+1);
+    paraB(i)=parameters(offset+(i-1)*(p+q)+2);
+end
 
 paraW=bsxfun(@minus,1,bsxfun(@plus,paraA,paraB));
 
