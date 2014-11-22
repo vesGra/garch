@@ -1,4 +1,4 @@
-function [Factor_Result1,Factor_Result2] = Cal_Factor_1(data,Var_startIndex,weight1,weight2,name,p,o,q,numfactors,YC)
+function [Factor_Result1,Factor_Result2] = Cal_Factor_1_full(data,Var_startIndex,weight1,weight2,name,p,o,q,numfactors,YC)
 % Cal_Factor_1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ¹Ì¶¨parameters
@@ -62,40 +62,25 @@ paraB=paraB';
 %sigma=[]
 for i=Var_startIndex:Var_lens
     index=i-Var_startIndex+1;  
-
+   %m_new2=newData(i-520:i-259,:);
+    m2=data(i-261:i,:);
+    Cov_PF=cov(m2);  
     m_new2=newData(i-260-1-260:i-260-1,:);
     m_new2_F=newData_F(i-260-1-260:i-260-1,:);
-    sigma_F=sigma(i-260-1-260:i-260-1,:);
     [w, pc] = pca(m_new2_F,'outer');	
-   errors=[];
-   for t=1:261
-    F = pc(t,1:numfactors);
-    weights = bsxfun(@times,w(:,1:numfactors),sigma_F(t,:)');
-    
-    erros=bsxfun(@minus,m_new2(t,:)',weights*F');
-    errors(t,:)=erros';
-   end
-    H_omega=cov(errors);
-    omega=diag(H_omega,0);   
-    omega=diag(omega);
-   
-    Ht=cov(F);
+    Ht=cov(pc);
     ht=diag(Ht,0);
-    
-    ft=F(end,:,:);
+    ft=pc(end,:,:);
     ft=ft';
     
     htsub1=bsxfun(@times,paraA,ft.^2);
-
     htsub2=bsxfun(@times,paraB,ht);
-
     ht1=bsxfun(@plus,paraW,htsub1);
- 
     ht1=bsxfun(@plus,ht1,htsub2);
     Ht1=diag(ht1);
-    w_F=bsxfun(@times,w(:,1:numfactors),sigma_F(end,:)');
-
-    H_Factor=w_F * Ht1 * w_F' + omega;     
+    w_F=bsxfun(@times,w,sigma(i-260-1,:)');
+    H_Factor=w_F * Ht1 * w_F';  
+    %H_Factor=w*Ht1*w';  
     Factor_Result1(index)=sqrt(weight1'*H_Factor*weight1);
     if ~isempty(weight2)
         Factor_Result2(index)=sqrt(weight2'*H_Factor*weight2);
@@ -108,4 +93,3 @@ if ~isempty(weight2)
 else
     save(strcat('../Result/',name,'_Factor',num2str(p),num2str(o),num2str(q),'_1'),'Factor_Result1');
 end
-

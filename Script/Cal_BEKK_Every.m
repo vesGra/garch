@@ -1,4 +1,4 @@
-function [BEKK_Result1,BEKK_Result2] = Cal_BEKK_Every(data,Var_startIndex,weight1,weight2,name,p,o,q)
+function [BEKK_Result1,BEKK_Result2] = Cal_BEKK_Every(data,Var_startIndex,weight1,weight2,name,p,o,q,YC)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 动态parameters，自己计算Ht&Rt
 % 这个是采用动态的parameters，即parameters根据每条数据的前9年计算而出
@@ -41,7 +41,7 @@ for i=Var_startIndex:Var_lens
     m2=data(i-261:i-1,:);
     m_new=newData(i-260-1,:);
     Cov_PF=cov(m2);  
-    mData=newData(i-260-261*3+1:i-260-1,:);
+    mData=newData(i-260-261*YC+1:i-260-1,:);
     % 1
     [PARAMETERS,LL,HT,VCV,SCORES] = bekk(mData,[],p,o,q);
     [C,A,G,B] = bekk_parameter_transform(PARAMETERS,p,o,q,k,1);    
@@ -59,10 +59,10 @@ save(strcat('../modelResults/',name,'_BEKK',num2str(p),num2str(o),num2str(q),'_P
 
 % 保存数据文件
 if ~isempty(weight2)
-    save(strcat('../Result/',name,'_BEKK',num2str(p),num2str(o),num2str(q),'_Every_Defensive'),'BEKK_Result1');
-    save(strcat('../Result/',name,'_BEKK',num2str(p),num2str(o),num2str(q),'_Every_Offensive'),'BEKK_Result2');   
+    save(strcat('../Result/',name,'_BEKK',num2str(p),num2str(o),num2str(q),'_Every_',num2str(YC),'_Defensive'),'BEKK_Result1');
+    save(strcat('../Result/',name,'_BEKK',num2str(p),num2str(o),num2str(q),'_Every_',num2str(YC),'_Offensive'),'BEKK_Result2');   
 else
-    save(strcat('../Result/',name,'_BEKK',num2str(p),num2str(o),num2str(q),'_Every'),'BEKK_Result1');
+    save(strcat('../Result/',name,'_BEKK',num2str(p),num2str(o),num2str(q),'_Every_',num2str(YC)),'BEKK_Result1');
 end
 
 

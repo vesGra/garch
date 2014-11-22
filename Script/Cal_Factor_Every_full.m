@@ -24,6 +24,7 @@ if ~isempty(numfactors) && numfactors>k
     error('numfactors³¬¹ýÎ¬Êý£¡');
 end
 % new data 
+% new data 
 newData=[];
 newData_F=[];
 sigma=[];
@@ -50,41 +51,26 @@ for i=Var_startIndex:Var_lens
     paraW=paraW';
     paraA=paraA';
     paraB=paraB';
-   
+  
     [w, pc] = pca(m_new2_F,'outer');	
-   errors=[];
-   for t=1:261
-    F = pc(t,1:numfactors);
-    weights = bsxfun(@times,w(:,1:numfactors),sigma_F(t,:)');
-    
-    erros=bsxfun(@minus,m_new2(t,:)',weights*F');
-    errors(t,:)=erros';
-   end
-    H_omega=cov(errors);
-    omega=diag(H_omega,0);   
-    omega=diag(omega);
-   
-    Ht=cov(F);
+    Ht=cov(pc);
     ht=diag(Ht,0);
-    
-    ft=F(end,:,:);
+    ft=pc(end,:,:);
     ft=ft';
     
     htsub1=bsxfun(@times,paraA,ft.^2);
-
     htsub2=bsxfun(@times,paraB,ht);
-
     ht1=bsxfun(@plus,paraW,htsub1);
- 
     ht1=bsxfun(@plus,ht1,htsub2);
     Ht1=diag(ht1);
-    w_F=bsxfun(@times,w(:,1:numfactors),sigma_F(end,:)');
-
-    H_Factor=w_F * Ht1 * w_F' + omega;     
+    w_F=bsxfun(@times,w,sigma(i-260-1,:)');
+    H_Factor=w_F * Ht1 * w_F';  
+    %H_Factor=w*Ht1*w';  
     Factor_Result1(index)=sqrt(weight1'*H_Factor*weight1);
     if ~isempty(weight2)
         Factor_Result2(index)=sqrt(weight2'*H_Factor*weight2);
     end
+   disp(i);
 end 
 % save Factor Result 
 save(strcat('../modelResults/',name,'_Factor',num2str(p),num2str(o),num2str(q),'_PARAMETERS'),'Equity_Factor_PARAMETERS');

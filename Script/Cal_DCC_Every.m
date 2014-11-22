@@ -1,4 +1,4 @@
-function [DCC_Result1,DCC_Result2] = Cal_DCC_Every(data,Var_startIndex,weight1,weight2,name,p,o,q)
+function [DCC_Result1,DCC_Result2] = Cal_DCC_Every(data,Var_startIndex,weight1,weight2,name,p,o,q,YC)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 动态parameters，自己计算Ht&Rt
 % 这个是采用动态的parameters，即parameters根据每条数据的前9年计算而出
@@ -47,7 +47,7 @@ for i=Var_startIndex:Var_lens
     index=i-Var_startIndex+1; 
        
     %mData=newData(index+261*5:index+261*8,:);
-   mData=newData(i-260-1-261*3+1:i-260-1,:);
+   mData=newData(i-260-1-261*YC+1:i-260-1,:);
     % 1
     [PARAMETERS,LL,HtTemp,VCV,SCORES,DIAGNOSTICS,RRt,QQt,Ao,Go,Bo,Ro]=dcc(mData,[],p,o,q,m,l,n,2,'2-stage','none');
     
@@ -128,20 +128,20 @@ for i=Var_startIndex:Var_lens
    disp(i);
 end 
 % save DCC Result 
-save(strcat('../modelResults/',name,'_DCC',num2str(p),num2str(o),num2str(q),'_PARAMETERS'),'Equity_DCC_PARAMETERS');
-save(strcat('../modelResults/',name,'_DCC',num2str(p),num2str(o),num2str(q),'_Ht'),'Equity_DCC_Ht');
-save(strcat('../modelResults/',name,'_DCC',num2str(p),num2str(o),num2str(q),'_Rt'),'Equity_DCC_Rt');
-save(strcat('../modelResults/',name,'_DCC',num2str(p),num2str(o),num2str(q),'_Ao'),'Equity_DCC_Ao');
-save(strcat('../modelResults/',name,'_DCC',num2str(p),num2str(o),num2str(q),'_Go'),'Equity_DCC_Go');
-save(strcat('../modelResults/',name,'_DCC',num2str(p),num2str(o),num2str(q),'_Bo'),'Equity_DCC_Bo');
-save(strcat('../modelResults/',name,'_DCC',num2str(p),num2str(o),num2str(q),'_Ro'),'Equity_DCC_Ro');
+save(strcat('../modelResults/',name,'_DCC',num2str(p),num2str(o),num2str(q),'_',num2str(YC),'_PARAMETERS'),'Equity_DCC_PARAMETERS');
+save(strcat('../modelResults/',name,'_DCC',num2str(p),num2str(o),num2str(q),'_',num2str(YC),'_Ht'),'Equity_DCC_Ht');
+save(strcat('../modelResults/',name,'_DCC',num2str(p),num2str(o),num2str(q),'_',num2str(YC),'_Rt'),'Equity_DCC_Rt');
+save(strcat('../modelResults/',name,'_DCC',num2str(p),num2str(o),num2str(q),'_',num2str(YC),'_Ao'),'Equity_DCC_Ao');
+save(strcat('../modelResults/',name,'_DCC',num2str(p),num2str(o),num2str(q),'_',num2str(YC),'_Go'),'Equity_DCC_Go');
+save(strcat('../modelResults/',name,'_DCC',num2str(p),num2str(o),num2str(q),'_',num2str(YC),'_Bo'),'Equity_DCC_Bo');
+save(strcat('../modelResults/',name,'_DCC',num2str(p),num2str(o),num2str(q),'_',num2str(YC),'_Ro'),'Equity_DCC_Ro');
 
 % 保存数据文件
 if ~isempty(weight2)
-    save(strcat('../Result/',name,'_DCC',num2str(p),num2str(o),num2str(q),'_Every_Defensive'),'DCC_Result1');
-    save(strcat('../Result/',name,'_DCC',num2str(p),num2str(o),num2str(q),'_Every_Offensive'),'DCC_Result2');   
+    save(strcat('../Result/',name,'_DCC',num2str(p),num2str(o),num2str(q),'_Every_',num2str(YC),'_Defensive'),'DCC_Result1');
+    save(strcat('../Result/',name,'_DCC',num2str(p),num2str(o),num2str(q),'_Every_',num2str(YC),'_Offensive'),'DCC_Result2');   
 else
-    save(strcat('../Result/',name,'_DCC',num2str(p),num2str(o),num2str(q),'_Every'),'DCC_Result1');
+    save(strcat('../Result/',name,'_DCC',num2str(p),num2str(o),num2str(q),'_Every_',num2str(YC)),'DCC_Result1');
 end
 
 

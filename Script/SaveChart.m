@@ -1,7 +1,9 @@
 function  [result]=SaveChart(data,chartLegend,chartTitle)
 %生成图表，并保存
 chartLegend=strcat(chartLegend,'''',' ','''');
-
+chartLegend=strrep(chartLegend,'Every','r');
+chartTitle=strrep(chartTitle,'Every','r');
+chartTitle=strrep(chartTitle,'FixIncome','Fixed Income');
 %7 chart
 figure1=figure('Position',[0 30 1366 608]);
 set(figure1,'visible','off');

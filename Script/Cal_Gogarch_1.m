@@ -2,8 +2,7 @@ function [Gogarch_Result1,Gogarch_Result2] = Cal_Gogarch_1(data,Var_startIndex,w
 %Cal_Gogarch_1
 % 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 固定parameters
-% 这个是采用固定的parameters，即1-9年的log price算出来parameters，后面计算采用固定的参数计算
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if isempty(p)
     p=1;
@@ -20,17 +19,9 @@ end
 k=Var_cols;
 % 1
 % new data 
-newData=[];
-for i=261:Var_lens
-   for j=1: Var_cols
-       tempData=data(i-260:i,j);
-        mu=mean(tempData);
-        epsilon=bsxfun(@minus,tempData(end,:,:),mu);
-        newData(i-260,j)=epsilon;
-   end
-end
-% 用前8年，算参数
-[parameters,ll,Ht,VCV,scores,Z] = gogarch(newData(1:end-261,:),p,q);%(newData,numfactors,p,o,q);
+[newData,newData_F,sigma] = MakeNewData_F(data);
+% 
+[parameters,ll,Ht,VCV,scores,Z] = gogarch(newData_F(end-2*261-1:end-261,:),p,q);%(newData,numfactors,p,o,q);
 
 paraA=[];
 paraB=[];
@@ -43,10 +34,10 @@ paraW=bsxfun(@minus,1,bsxfun(@plus,paraA,paraB));
 %2
 for i=Var_startIndex:Var_lens
    index=i-Var_startIndex+1;       
-   m_new2=newData(i-260-1-260:i-260-1,:);
+   m_new2_F=newData_F(i-260-1-260:i-260-1,:);
    errors=[];
    for t=1:261    
-    erros=inv(Z)*m_new2(t,:)';
+    erros=inv(Z)*m_new2_F(t,:)';
     errors(t,:)=erros';
    end
    
@@ -67,6 +58,7 @@ for i=Var_startIndex:Var_lens
         Gogarch_Result2(index)=sqrt(weight2'*H_gogarch*weight2);
     end
 end 
+
 % 保存数据文件
 if ~isempty(weight2)
     save(strcat('../Result/',name,'_Gogarch',num2str(p),num2str(q),'_1_Defensive'),'Gogarch_Result1');
