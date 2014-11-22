@@ -15,7 +15,7 @@ end
 
 [Var_lens,Var_cols]=size(data); %
 k=Var_cols;
-offset=k*(k-1)/2;
+offset=k*(p+q);
 % 1
 % new data 
 newData=[];

@@ -18,7 +18,7 @@ end
 
 [Var_lens,Var_cols]=size(data); %
 k=Var_cols;
-offset=k*(k-1)/2;
+offset=k*(p+q);
 % new data 
 newData=[];
 sigma=[];
@@ -51,9 +51,9 @@ for i=Var_startIndex:Var_lens
     paraA=[];
     paraB=[];
     paraW=[];
-    for i=1:k
-        paraA(i)=parameters(end-(offset-((i-1)*(p+q)+1)));
-        paraB(i)=parameters(end-(offset-((i-1)*(p+q)+2)));
+    for i2=1:k
+        paraA(i2)=parameters(end-(offset-((i2-1)*(p+q)+1)));
+        paraB(i2)=parameters(end-(offset-((i2-1)*(p+q)+2)));
     end
     paraA=paraA';
     paraB=paraB';

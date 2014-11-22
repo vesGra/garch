@@ -4,7 +4,7 @@ function [BEKK_Result1,BEKK_Result2] = Cal_BEKK_Every(data,Var_startIndex,weight
 % 这个是采用动态的parameters，即parameters根据每条数据的前9年计算而出
 % Ht和Rt采用自己计算方式。
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-YC=YC+1;
+% YC=YC+1;
 if isempty(p)
     p=1;
 end
