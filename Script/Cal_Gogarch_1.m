@@ -1,9 +1,7 @@
-function [Gogarch_Result1,Gogarch_Result2] = Cal_Gogarch_1(data,Var_startIndex,weight1,weight2,name,p,q)
+function [Gogarch_Result1,Gogarch_Result2] = Cal_Gogarch_1(data,Var_startIndex,weight1,weight2,name,p,q,YC)
 %Cal_Gogarch_1
 % 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+YC=YC+1;
 if isempty(p)
     p=1;
 end
@@ -17,33 +15,47 @@ end
 
 [Var_lens,Var_cols]=size(data); %
 k=Var_cols;
-
 offset=k*(k-1)/2;
 % 1
 % new data 
-[newData,newData_F,sigma] = MakeNewData_F(data);
-% 
-[parameters,ll,Ht,VCV,scores,Z] = gogarch(newData_F(end-2*261-1:end-261,:),p,q);%(newData,numfactors,p,o,q);
+newData=[];
+sigma=[];
+for i=261:Var_lens
+   for j=1: Var_cols
+       tempData=data(i-260:i,j);
+        mu=mean(tempData);
+        sigma(i-260,j)=sqrt(var(tempData));
+        newData(i-260,j)=data(i,j)-mu;
+   end
+end
+[lens,cols]=size(newData);
+if (lens-261*YC+1)<1
+    index=1;
+else
+    index=lens-261*YC+1;
+end
+% 用前8年，算参数
+[parameters,ll,Ht,VCV,scores,Z] = gogarch(newData(index:end-261,:),p,q);
 
 paraA=[];
 paraB=[];
 paraW=[];
-paraA=parameters(end-3*k+1:end-2*k);
-paraB=parameters(end-k+1:end);
 for i=1:k
-    paraA(i)=parameters(offset+(i-1)*(p+q)+1);
-    paraB(i)=parameters(offset+(i-1)*(p+q)+2);
+    paraA(i)=parameters(end-(offset-((i-1)*(p+q)+1)));
+    paraB(i)=parameters(end-(offset-((i-1)*(p+q)+2)));
 end
-
+paraA=paraA';
+paraB=paraB';
 paraW=bsxfun(@minus,1,bsxfun(@plus,paraA,paraB));
 
 %2
 for i=Var_startIndex:Var_lens
-   index=i-Var_startIndex+1;       
-   m_new2_F=newData_F(i-260-1-260:i-260-1,:);
+   index=i-Var_startIndex+1;
+   m_new2=newData(i-260-1-260:i-260-1,:);
+   %m_new2_F=newData_F(i-260-1-260:i-260-1,:);
    errors=[];
    for t=1:261    
-    erros=inv(Z)*m_new2_F(t,:)';
+    erros=inv(Z)*m_new2(t,:)';
     errors(t,:)=erros';
    end
    
@@ -64,7 +76,6 @@ for i=Var_startIndex:Var_lens
         Gogarch_Result2(index)=sqrt(weight2'*H_gogarch*weight2);
     end
 end 
-
 % 保存数据文件
 if ~isempty(weight2)
     save(strcat('../Result/',name,'_Gogarch',num2str(p),num2str(q),'_1_Defensive'),'Gogarch_Result1');

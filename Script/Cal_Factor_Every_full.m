@@ -32,7 +32,7 @@ sigma=[];
 % save Factor Result
 Equity_Factor_PARAMETERS=[];
 ht=[];
-[lens,cols]=size(newData_F);
+
 for i=Var_startIndex:Var_lens
     index=i-Var_startIndex+1; 
     if (i-260-261*YC+1)<1

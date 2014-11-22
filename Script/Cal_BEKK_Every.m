@@ -4,6 +4,7 @@ function [BEKK_Result1,BEKK_Result2] = Cal_BEKK_Every(data,Var_startIndex,weight
 % 这个是采用动态的parameters，即parameters根据每条数据的前9年计算而出
 % Ht和Rt采用自己计算方式。
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+YC=YC+1;
 if isempty(p)
     p=1;
 end
@@ -41,7 +42,13 @@ for i=Var_startIndex:Var_lens
     m2=data(i-261:i-1,:);
     m_new=newData(i-260-1,:);
     Cov_PF=cov(m2);  
-    mData=newData(i-260-261*YC+1:i-260-1,:);
+    if (i-260-261*YC+1)<1
+        subIndex=1;
+    else
+        subIndex=i-260-261*YC+1;
+    end
+    mData=newData(subIndex:end-261,:)
+    %mData=newData(i-260-261*YC+1:i-260-1,:);
     % 1
     [PARAMETERS,LL,HT,VCV,SCORES] = bekk(mData,[],p,o,q);
     [C,A,G,B] = bekk_parameter_transform(PARAMETERS,p,o,q,k,1);    

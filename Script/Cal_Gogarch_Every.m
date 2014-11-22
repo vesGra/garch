@@ -1,9 +1,10 @@
-function [Gogarch_Result1,Gogarch_Result2] = Cal_Gogarch_Every(data,Var_startIndex,weight1,weight2,name,p,q)
+function [Gogarch_Result1,Gogarch_Result2] = Cal_Gogarch_Every(data,Var_startIndex,weight1,weight2,name,p,q,YC)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 动态parameters，自己计算Ht&Rt
 % 这个是采用动态的parameters，即parameters根据每条数据的前9年计算而出
 % Ht和Rt采用自己计算方式。
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+YC=YC+1;
 if isempty(p)
     p=1;
 end
@@ -17,14 +18,16 @@ end
 
 [Var_lens,Var_cols]=size(data); %
 k=Var_cols;
+offset=k*(k-1)/2;
 % new data 
 newData=[];
+sigma=[];
 for i=261:Var_lens
    for j=1: Var_cols
        tempData=data(i-260:i,j);
         mu=mean(tempData);
-        epsilon=bsxfun(@minus,tempData(end,:,:),mu);
-        newData(i-260,j)=epsilon;
+        sigma(i-260,j)=sqrt(var(tempData));
+        newData(i-260,j)=data(i,j)-mu;
    end
 end
 % save Gogarch Result
@@ -33,9 +36,14 @@ Equity_Gogarch_Z=[];
 
 ht=[];
 for i=Var_startIndex:Var_lens
-    index=i-Var_startIndex+1; 
-       
-    mData=newData(i-260-261*3+1:i-260-1,:);
+    index=i-Var_startIndex+1;        
+    %mData=newData(i-260-261*YC+1:i-260-1,:);
+    if (i-260-261*YC+1)<1
+        subIndex=1;
+    else
+        subIndex=i-260-261*YC+1;
+    end
+    mData=newData(subIndex:end-261,:)
     m_new2=mData(end-260:end,:);
    [parameters,ll,Ht,VCV,scores,Z] = gogarch(mData,p,q);%(newData,numfactors,p,o,q);
     Equity_Gogarch_PARAMETERS(:,:,index)=parameters;
@@ -43,8 +51,12 @@ for i=Var_startIndex:Var_lens
     paraA=[];
     paraB=[];
     paraW=[];
-    paraA=parameters(end-3*k+1:end-2*k);
-    paraB=parameters(end-k+1:end);
+    for i=1:k
+        paraA(i)=parameters(end-(offset-((i-1)*(p+q)+1)));
+        paraB(i)=parameters(end-(offset-((i-1)*(p+q)+2)));
+    end
+    paraA=paraA';
+    paraB=paraB';
     paraW=bsxfun(@minus,1,bsxfun(@plus,paraA,paraB));
     errors=[];
    for t=1:261    
@@ -67,7 +79,7 @@ for i=Var_startIndex:Var_lens
     Gogarch_Result1(index)=sqrt(weight1'*H_gogarch*weight1);
    if ~isempty(weight2)
         Gogarch_Result2(index)=sqrt(weight2'*H_gogarch*weight2);
-   end
+    end
     disp(i);
 end 
 % save Gogarch Result 

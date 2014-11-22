@@ -33,7 +33,12 @@ Equity_Factor_PARAMETERS=[];
 ht=[];
 for i=Var_startIndex:Var_lens
     index=i-Var_startIndex+1; 
-    mData=newData_F(i-260-261*YC+1:i-260-1,:);  
+    if (i-260-261*YC+1)<1
+        subIndex=1;
+    else
+        subIndex=i-260-261*YC+1;
+    end
+    mData=newData_F(subIndex:end-261,:)
     m_new2=newData(i-260-1-260:i-260-1,:);
     m_new2_F=newData_F(i-260-1-260:i-260-1,:);
     sigma_F=sigma(i-260-1-260:i-260-1,:);

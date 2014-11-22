@@ -103,19 +103,19 @@ if Factor101Every==1
 end
 %Gogarch
 if Gogarch11==1
- %    [Alternative_Gogarch11_1]=Cal_Gogarch_1(Alternative_LP,[],Alternative_w,[],'Alternative',1,1);
-    [Equity_Gogarch11_1]=Cal_Gogarch_1(Equity_LP,[],Equity_w,[],'Equity',1,1);
-%      [FixIncome_Gogarch11_1]=Cal_Gogarch_1(FixIncome_LP,[],FixIncome_w,[],'FixIncome',1,1);
-%      [NewPF_BEKK101_1_Defensive,NewPF_Gogarch11_1_Offensive]=Cal_Gogarch_1(NewPF_LP,[],NewPF_w,NewPF_w2,'NewPF',1,1);
-%      [OldPF_BEKK101_1_Defensive,OldPF_Gogarch11_1_Offensive]=Cal_Gogarch_1(OldPF_LP,[],OldPF_w,OldPF_w2,'OldPF',1,1);
+    [Alternative_Gogarch11_1]=Cal_Gogarch_1(Alternative_LP,[],Alternative_w,[],'Alternative',1,1,8);
+    [Equity_Gogarch11_1]=Cal_Gogarch_1(Equity_LP,[],Equity_w,[],'Equity',1,1,1);
+     [FixIncome_Gogarch11_1]=Cal_Gogarch_1(FixIncome_LP,[],FixIncome_w,[],'FixIncome',1,1,1);
+     [NewPF_BEKK101_1_Defensive,NewPF_Gogarch11_1_Offensive]=Cal_Gogarch_1(NewPF_LP,[],NewPF_w,NewPF_w2,'NewPF',1,1,1);
+     [OldPF_BEKK101_1_Defensive,OldPF_Gogarch11_1_Offensive]=Cal_Gogarch_1(OldPF_LP,[],OldPF_w,OldPF_w2,'OldPF',1,1,1);
 end
 %Gogarch Every
 if Gogarch11Every==1
-    [Alternative_Gogarch11_Every]=Cal_Gogarch_Every(Alternative_LP,[],Alternative_w,[],'Alternative',1,1);
-    [Equity_Gogarch11_Every]=Cal_Gogarch_Every(Equity_LP,[],Equity_w,[],'Equity',1,1);
-    [FixIncome_Gogarch11_Every]=Cal_Gogarch_Every(FixIncome_LP,[],FixIncome_w,[],'FixIncome',1,1);
-    [NewPF_BEKK101_Every_Defensive,NewPF_Gogarch11_Every_Offensive]=Cal_Gogarch_Every(NewPF_LP,[],NewPF_w,NewPF_w2,'NewPF',1,1);
-    [OldPF_BEKK101_Every_Defensive,OldPF_Gogarch11_Every_Offensive]=Cal_Gogarch_Every(OldPF_LP,[],OldPF_w,OldPF_w2,'OldPF',1,1);
+    [Alternative_Gogarch11_Every]=Cal_Gogarch_Every(Alternative_LP,[],Alternative_w,[],'Alternative',1,1,8);
+    [Equity_Gogarch11_Every]=Cal_Gogarch_Every(Equity_LP,[],Equity_w,[],'Equity',1,1,1);
+    [FixIncome_Gogarch11_Every]=Cal_Gogarch_Every(FixIncome_LP,[],FixIncome_w,[],'FixIncome',1,1,1);
+    [NewPF_BEKK101_Every_Defensive,NewPF_Gogarch11_Every_Offensive]=Cal_Gogarch_Every(NewPF_LP,[],NewPF_w,NewPF_w2,'NewPF',1,1,1);
+    [OldPF_BEKK101_Every_Defensive,OldPF_Gogarch11_Every_Offensive]=Cal_Gogarch_Every(OldPF_LP,[],OldPF_w,OldPF_w2,'OldPF',1,1,1);
 end
 
 
