@@ -123,7 +123,7 @@ for i=Var_startIndex:Var_lens
    result_DCC(:,:,index)=Dt1(:,:,index)*Rt1(1:Var_cols,1:Var_cols,index)*Dt1(:,:,index);
    DCC_Result1(index)=sqrt(weight1'*result_DCC(:,:,index)*weight1);
    if ~isempty(weight2)
-        DCC_Result2(index)=sqrt(weight1'*result_DCC(:,:,index)*weight1);
+        DCC_Result2(index)=sqrt(weight2'*result_DCC(:,:,index)*weight2);
     end
    disp(i);
 end 

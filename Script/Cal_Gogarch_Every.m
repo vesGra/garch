@@ -43,7 +43,7 @@ for i=Var_startIndex:Var_lens
     else
         subIndex=i-260-261*YC+1;
     end
-    mData=newData(subIndex:end-261,:)
+    mData=newData(subIndex:i-260-1,:)
     m_new2=mData(end-260:end,:);
    [parameters,ll,Ht,VCV,scores,Z] = gogarch(mData,p,q);%(newData,numfactors,p,o,q);
     Equity_Gogarch_PARAMETERS(:,:,index)=parameters;
