@@ -47,8 +47,8 @@ for i=Var_startIndex:Var_lens
     else
         subIndex=i-260-261*YC+1;
     end
-    mData=newData(subIndex:end-261,:)
-    %mData=newData(i-260-261*YC+1:i-260-1,:);
+    %mData=newData(subIndex:end-261,:)
+    mData=newData(i-260-261*YC+1:i-260-1,:);
     % 1
     [PARAMETERS,LL,HT,VCV,SCORES] = bekk(mData,[],p,o,q);
     [C,A,G,B] = bekk_parameter_transform(PARAMETERS,p,o,q,k,1);    
