@@ -30,3 +30,5 @@ catch ME
     %error('文件不存在!');
     flag=0;
 end
+Data=real(Data);
+Data2=real(Data2);
