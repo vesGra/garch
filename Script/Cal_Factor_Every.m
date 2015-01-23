@@ -95,10 +95,10 @@ end
 save(strcat('../modelResults/',name,'_Factor',num2str(p),num2str(o),num2str(q),'_PARAMETERS'),'Equity_Factor_PARAMETERS');
 % 保存数据文件
 if ~isempty(weight2)
-    save(strcat('../Result/',name,'_Factor',num2str(p),num2str(o),num2str(q),'_Every_Defensive'),'Factor_Result1');
-    save(strcat('../Result/',name,'_Factor',num2str(p),num2str(o),num2str(q),'_Every_Offensive'),'Factor_Result2');   
+    save(strcat('../Result/',name,'_Factor',num2str(p),num2str(o),num2str(q),'_Every_',num2str(YC),'_Defensive'),'Factor_Result1');
+    save(strcat('../Result/',name,'_Factor',num2str(p),num2str(o),num2str(q),'_Every_',num2str(YC),'_Offensive'),'Factor_Result2');   
 else
-    save(strcat('../Result/',name,'_Factor',num2str(p),num2str(o),num2str(q),'_Every'),'Factor_Result1');
+    save(strcat('../Result/',name,'_Factor',num2str(p),num2str(o),num2str(q),'_Every_',num2str(YC)),'Factor_Result1');
 end
 
 

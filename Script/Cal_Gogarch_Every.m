@@ -83,16 +83,16 @@ for i=Var_startIndex:Var_lens
     disp(i);
 end 
 % save Gogarch Result 
-save(strcat('../modelResults/',name,'_Gogarch',num2str(p),num2str(q),'_PARAMETERS'),'Equity_Gogarch_PARAMETERS');
-save(strcat('../modelResults/',name,'_Gogarch',num2str(p),num2str(q),'_Z'),'Equity_Gogarch_Z');
+save(strcat('../modelResults/',name,'_Gogarch',num2str(p),num2str(q),'_PARAMETERS_',num2str(YC)),'Equity_Gogarch_PARAMETERS');
+save(strcat('../modelResults/',name,'_Gogarch',num2str(p),num2str(q),'_Z'),'Equity_',num2str(YC),'_Gogarch_Z');
 
 
 % 保存数据文件
 if ~isempty(weight2)
-    save(strcat('../Result/',name,'_Gogarch',num2str(p),num2str(q),'_Every_Defensive'),'Gogarch_Result1');
-    save(strcat('../Result/',name,'_Gogarch',num2str(p),num2str(q),'_Every_Offensive'),'Gogarch_Result2');   
+    save(strcat('../Result/',name,'_Gogarch',num2str(p),num2str(q),'_Every_',num2str(YC),'_Defensive'),'Gogarch_Result1');
+    save(strcat('../Result/',name,'_Gogarch',num2str(p),num2str(q),'_Every_',num2str(YC),'_Offensive'),'Gogarch_Result2');   
 else
-    save(strcat('../Result/',name,'_Gogarch',num2str(p),num2str(q),'_Every'),'Gogarch_Result1');
+    save(strcat('../Result/',name,'_Gogarch',num2str(p),num2str(q),'_Every_',num2str(YC)),'Gogarch_Result1');
 end
 
 
