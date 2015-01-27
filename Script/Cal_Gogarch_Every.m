@@ -84,7 +84,7 @@ for i=Var_startIndex:Var_lens
 end 
 % save Gogarch Result 
 save(strcat('../modelResults/',name,'_Gogarch',num2str(p),num2str(q),'_PARAMETERS_',num2str(YC)),'Equity_Gogarch_PARAMETERS');
-save(strcat('../modelResults/',name,'_Gogarch',num2str(p),num2str(q),'_Z'),'Equity_',num2str(YC),'_Gogarch_Z');
+save(strcat('../modelResults/',name,'_Gogarch',num2str(p),num2str(q),'_Z_',num2str(YC)),'Equity_Gogarch_Z');
 
 
 % 保存数据文件
