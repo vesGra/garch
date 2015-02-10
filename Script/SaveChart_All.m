@@ -31,7 +31,12 @@ end
 if ~isempty(chartData.data8)
     count=count+1;
 end
-
+if ~isempty(chartData.data9)
+    count=count+1;
+end
+if ~isempty(chartData.data10)
+    count=count+1;
+end
 if(count==0)
     return;
 elseif(count==1)
@@ -45,8 +50,9 @@ else
    row=ceil(count/2);
 end
 %生成图表，并保存
-figure1=figure('Position',[0 30 2866 2808]);
-set(gcf,'Position',[0 30 2866 2808]);
+figure1=figure('Position',[0 30 1880 1880]);
+set(gcf, 'color', 'white');
+set(gca, 'color', 'white');
 %4*2 8张
 
 if ~isempty(chartData.data1)
@@ -55,10 +61,10 @@ if ~isempty(chartData.data1)
     cdata=chartData.data1;
     chartLegend=strcat(cdata.chartLegend,'''',' ','''');
     chartLegend=strrep(chartLegend,'Every','r');
-    chartTitle=strrep(cdata.chartTitle,'Every','r');
-    chartTitle=strrep(chartTitle,'FixIncome','Fixed Income');
+    [chartLegend]=ModifyName(chartLegend);
+    [chartTitle]=ModifyName(cdata.chartTitle);
     plot(cdata.data);
-    set(gca,'xticklabel',{'2013-04-09','2013-08-09','2013-12-09','2014-04-08'});
+    set(gca,'xticklabel',{'04/13','08/13','12/13','04/14'});
     set(gca,'XTick',[1 88 176 261]);
     title(chartTitle);
     strcat('legend(',chartLegend,')');
@@ -72,10 +78,10 @@ if ~isempty(chartData.data2)
     cdata=chartData.data2;
     chartLegend=strcat(cdata.chartLegend,'''',' ','''');
     chartLegend=strrep(chartLegend,'Every','r');
-    chartTitle=strrep(cdata.chartTitle,'Every','r');
-    chartTitle=strrep(chartTitle,'FixIncome','Fixed Income');
+    [chartLegend]=ModifyName(chartLegend);
+    [chartTitle]=ModifyName(cdata.chartTitle);
     plot(cdata.data);
-   set(gca,'xticklabel',{'2013-04-09','2013-08-09','2013-12-09','2014-04-08'});
+   set(gca,'xticklabel',{'04/13','08/13','12/13','04/14'});
     set(gca,'XTick',[1 88 176 261]);
     title(chartTitle);
     strcat('legend(',chartLegend,')');
@@ -89,10 +95,10 @@ if ~isempty(chartData.data3)
     cdata=chartData.data3;
     chartLegend=strcat(cdata.chartLegend,'''',' ','''');
     chartLegend=strrep(chartLegend,'Every','r');
-    chartTitle=strrep(cdata.chartTitle,'Every','r');
-    chartTitle=strrep(chartTitle,'FixIncome','Fixed Income');
+    [chartLegend]=ModifyName(chartLegend);
+    [chartTitle]=ModifyName(cdata.chartTitle);
     plot(cdata.data);
-  set(gca,'xticklabel',{'2013-04-09','2013-08-09','2013-12-09','2014-04-08'});
+  set(gca,'xticklabel',{'04/13','08/13','12/13','04/14'});
     set(gca,'XTick',[1 88 176 261]);
     title(chartTitle);
     strcat('legend(',chartLegend,')');
@@ -106,10 +112,10 @@ if ~isempty(chartData.data4)
     cdata=chartData.data4;
     chartLegend=strcat(cdata.chartLegend,'''',' ','''');
     chartLegend=strrep(chartLegend,'Every','r');
-    chartTitle=strrep(cdata.chartTitle,'Every','r');
-    chartTitle=strrep(chartTitle,'FixIncome','Fixed Income');
+    [chartLegend]=ModifyName(chartLegend);
+   [chartTitle]=ModifyName(cdata.chartTitle);
     plot(cdata.data);
-   set(gca,'xticklabel',{'2013-04-09','2013-08-09','2013-12-09','2014-04-08'});
+   set(gca,'xticklabel',{'04/13','08/13','12/13','04/14'});
     set(gca,'XTick',[1 88 176 261]);
     title(chartTitle);
     strcat('legend(',chartLegend,')');
@@ -123,10 +129,10 @@ if ~isempty(chartData.data5)
     cdata=chartData.data5;
     chartLegend=strcat(cdata.chartLegend,'''',' ','''');
     chartLegend=strrep(chartLegend,'Every','r');
-    chartTitle=strrep(cdata.chartTitle,'Every','r');
-    chartTitle=strrep(chartTitle,'FixIncome','Fixed Income');
+    [chartLegend]=ModifyName(chartLegend);
+    [chartTitle]=ModifyName(cdata.chartTitle);
     plot(cdata.data);
-   set(gca,'xticklabel',{'2013-04-09','2013-08-09','2013-12-09','2014-04-08'});
+   set(gca,'xticklabel',{'04/13','08/13','12/13','04/14'});
     set(gca,'XTick',[1 88 176 261]);
     title(chartTitle);
     strcat('legend(',chartLegend,')');
@@ -140,10 +146,10 @@ if ~isempty(chartData.data6)
     cdata=chartData.data6;
     chartLegend=strcat(cdata.chartLegend,'''',' ','''');
     chartLegend=strrep(chartLegend,'Every','r');
-    chartTitle=strrep(cdata.chartTitle,'Every','r');
-    chartTitle=strrep(chartTitle,'FixIncome','Fixed Income');
+    [chartLegend]=ModifyName(chartLegend);
+    [chartTitle]=ModifyName(cdata.chartTitle);
     plot(cdata.data);
-   set(gca,'xticklabel',{'2013-04-09','2013-08-09','2013-12-09','2014-04-08'});
+   set(gca,'xticklabel',{'04/13','08/13','12/13','04/14'});
     set(gca,'XTick',[1 88 176 261]);
     title(chartTitle);
     strcat('legend(',chartLegend,')');
@@ -157,10 +163,10 @@ if ~isempty(chartData.data7)
     cdata=chartData.data7;
     chartLegend=strcat(cdata.chartLegend,'''',' ','''');
     chartLegend=strrep(chartLegend,'Every','r');
-    chartTitle=strrep(cdata.chartTitle,'Every','r');
-    chartTitle=strrep(chartTitle,'FixIncome','Fixed Income');
+    [chartLegend]=ModifyName(chartLegend);
+    [chartTitle]=ModifyName(cdata.chartTitle);
     plot(cdata.data);
-   set(gca,'xticklabel',{'2013-04-09','2013-08-09','2013-12-09','2014-04-08'});
+   set(gca,'xticklabel',{'04/13','08/13','12/13','04/14'});
     set(gca,'XTick',[1 88 176 261]);
     title(chartTitle);
     strcat('legend(',chartLegend,')');
@@ -174,10 +180,44 @@ if ~isempty(chartData.data8)
     cdata=chartData.data8;
     chartLegend=strcat(cdata.chartLegend,'''',' ','''');
     chartLegend=strrep(chartLegend,'Every','r');
-    chartTitle=strrep(cdata.chartTitle,'Every','r');
-    chartTitle=strrep(chartTitle,'FixIncome','Fixed Income');
+    [chartLegend]=ModifyName(chartLegend);
+   [chartTitle]=ModifyName(cdata.chartTitle);
     plot(cdata.data);
- set(gca,'xticklabel',{'2013-04-09','2013-08-09','2013-12-09','2014-04-08'});
+   set(gca,'xticklabel',{'04/13','08/13','12/13','04/14'});
+    set(gca,'XTick',[1 88 176 261]);
+    title(chartTitle);
+    strcat('legend(',chartLegend,')');
+    eval(strcat('legend(',chartLegend,')'));
+    xlabel('Date');
+    ylabel('volatility');
+end
+if ~isempty(chartData.data9)
+    index=index+1;
+    subplot(row,col,index);
+    cdata=chartData.data9;
+    chartLegend=strcat(cdata.chartLegend,'''',' ','''');
+    chartLegend=strrep(chartLegend,'Every','r');
+    [chartLegend]=ModifyName(chartLegend);
+   [chartTitle]=ModifyName(cdata.chartTitle);
+    plot(cdata.data);
+   set(gca,'xticklabel',{'04/13','08/13','12/13','04/14'});
+    set(gca,'XTick',[1 88 176 261]);
+    title(chartTitle);
+    strcat('legend(',chartLegend,')');
+    eval(strcat('legend(',chartLegend,')'));
+    xlabel('Date');
+    ylabel('volatility');
+end
+if ~isempty(chartData.data10)
+    index=index+1;
+    subplot(row,col,index);
+    cdata=chartData.data10;
+    chartLegend=strcat(cdata.chartLegend,'''',' ','''');
+    chartLegend=strrep(chartLegend,'Every','r');
+    [chartLegend]=ModifyName(chartLegend);
+   [chartTitle]=ModifyName(cdata.chartTitle);
+    plot(cdata.data);
+   set(gca,'xticklabel',{'04/13','08/13','12/13','04/14'});
     set(gca,'XTick',[1 88 176 261]);
     title(chartTitle);
     strcat('legend(',chartLegend,')');
@@ -186,8 +226,8 @@ if ~isempty(chartData.data8)
     ylabel('volatility');
 end
 %end save
-
-set(gcf,'Position',[0 30 1866 1808]);
+% set(gca,'FontSize',11);
+set(gcf,'Position',[-130 30 1570 700]);
 f=getframe(gcf);
 imwrite(f.cdata,[strcat('../Charts/',name,'.png')]);
 close all;
