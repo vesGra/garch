@@ -1,9 +1,10 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DCC 滚动参数计算
+% 动态parameters
+% 这个是采用动态的parameters，即parameters根据每条数据的前YC年计算而出
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [DCC_Result1,DCC_Result2] = Cal_DCC_Every(data,Var_startIndex,weight1,weight2,name,p,o,q,YC)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 动态parameters，自己计算Ht&Rt
-% 这个是采用动态的parameters，即parameters根据每条数据的前9年计算而出
-% Ht和Rt采用自己计算方式。
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 m=1;
 l=0;
 n=1;

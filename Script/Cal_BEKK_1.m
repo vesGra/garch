@@ -1,10 +1,12 @@
-function [BEKK_Result1,BEKK_Result2] = Cal_BEKK_1(data,Var_startIndex,weight1,weight2,name,p,o,q)
-%Cal_BEKK_1
+% 计算bekk固定参数
 % bekk
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 固定parameters
 % 这个是采用固定的parameters，即1-9年的log price算出来parameters，后面计算采用固定的参数计算
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+function [BEKK_Result1,BEKK_Result2] = Cal_BEKK_1(data,Var_startIndex,weight1,weight2,name,p,o,q)
+
 if isempty(p)
     p=1;
 end
@@ -34,7 +36,8 @@ for i=261:Var_lens
    end
 end
 [PARAMETERS,LL,HT,VCV,SCORES] = bekk(newData(1:end-261,:),[],p,o,q);
-[C,A,G,B] = bekk_parameter_transform(PARAMETERS,1,0,1,k,1);
+% [C,A,G,B] = bekk_parameter_transform(PARAMETERS,1,0,1,k,1);
+[C,A,G,B] = bekk_parameter_transform(PARAMETERS,1,0,1,k,3);
 j=1;
 for i=Var_startIndex:Var_lens
     index=i-Var_startIndex+1;  

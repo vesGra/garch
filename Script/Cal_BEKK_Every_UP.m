@@ -1,9 +1,10 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BEKK滚动参数
+% 动态parameters
+% 这个是采用动态的parameters
+% 此文件为测试使用，最终未使用
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [BEKK_Result1,BEKK_Result2] = Cal_BEKK_Every_UP(data,Var_startIndex,weight1,weight2,name,p,o,q,ppp)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 动态parameters，自己计算Ht&Rt
-% 这个是采用动态的parameters，即parameters根据每条数据的前9年计算而出
-% Ht和Rt采用自己计算方式。
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if isempty(p)
     p=1;
 end

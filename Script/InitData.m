@@ -11,6 +11,7 @@ load('../Data/Equity_LP2.mat');
 load('../Data/FixIncome_LP2.mat');
 load('../Data/NewPF_LP2.mat');
 load('../Data/OldPF_LP2.mat');
+load('../Data/AllData.mat');
 %load('../Data/SP_DAX_LP2.mat');
 %2 weights
 SP_DAX_w=[1/2;1/2]; % Weight
@@ -33,3 +34,10 @@ OldPF_w2=[0.25;0.15;0.10;0.15;0.10;0.05;0.04;0.04;0.04;0.04;0.04]; %Offensive We
 [NewPF_BasicStatistics]=Cal_BasicStatistics(NewPF_LP2);
 %OldPF_LP
 [OldPF_BasicStatistics]=Cal_BasicStatistics(OldPF_LP2);
+
+
+% Cal Corr Data
+[corr_data]=corr(AllData);
+
+% Cal Portfolio
+Cal_Portfolio

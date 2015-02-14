@@ -1,6 +1,7 @@
-function [Gogarch_Result1,Gogarch_Result2] = Cal_Gogarch_1(data,Var_startIndex,weight1,weight2,name,p,q,YC)
-%Cal_Gogarch_1
+%计算 Gogarch_一个参数
 % 
+function [Gogarch_Result1,Gogarch_Result2] = Cal_Gogarch_1(data,Var_startIndex,weight1,weight2,name,p,q,YC)
+
 YC=YC+1;
 if isempty(p)
     p=1;

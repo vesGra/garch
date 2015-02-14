@@ -1,5 +1,6 @@
- function results =Cal_MSE(st, ht)
-%MSE
+%º∆À„ MSE
+function results =Cal_MSE(st, ht)
+
 
 [a b] = size(st);
 [c d] = size(ht);

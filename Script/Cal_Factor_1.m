@@ -1,9 +1,10 @@
-function [Factor_Result1,Factor_Result2] = Cal_Factor_1(data,Var_startIndex,weight1,weight2,name,p,o,q,numfactors,YC)
-% Cal_Factor_1
+% 计算_Factor_1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 固定parameters
 % 这个是采用固定的parameters，即1-8年的log price算出来parameters，后面计算采用固定的参数计算
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function [Factor_Result1,Factor_Result2] = Cal_Factor_1(data,Var_startIndex,weight1,weight2,name,p,o,q,numfactors,YC)
+
 
 YC=YC+1;
 if isempty(p)

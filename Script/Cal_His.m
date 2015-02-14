@@ -1,4 +1,3 @@
-function [His_Result1,His_Result2] = Cal_His(data,Var_startIndex,weight1,weight2,name)
 % 计算历史波动率
 % Var_startIndex 为数据起始计算索引。默认值：2349
 % name 保存的数据文件名称,为空则不保存
@@ -6,6 +5,8 @@ function [His_Result1,His_Result2] = Cal_His(data,Var_startIndex,weight1,weight2
 % [His_Result1,His_Result2] = Cal_His(data,weight1,weight2)
 % 否则，只传一个就可以
 % [His_Result] = Cal_His(data,weight1)
+function [His_Result1,His_Result2] = Cal_His(data,Var_startIndex,weight1,weight2,name)
+
 if isempty(Var_startIndex)
     Var_startIndex=2349;
 end

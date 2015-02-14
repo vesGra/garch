@@ -1,9 +1,11 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 计算滚动factor 参数结果
+% 动态parameters
+% 这个是采用动态的parameters，即parameters根据每条数据的前YC年计算而出
+% factor个数:numfactors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [Factor_Result1,Factor_Result2] = Cal_Factor_Every(data,Var_startIndex,weight1,weight2,name,p,o,q,numfactors,YC)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 动态parameters，自己计算Ht&Rt
-% 这个是采用动态的parameters，即parameters根据每条数据的前9年计算而出
-% Ht和Rt采用自己计算方式。
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 YC=YC+1;
 if isempty(p)
     p=1;

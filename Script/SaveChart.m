@@ -1,5 +1,6 @@
+%生成图表，并保存文件
 function  [result]=SaveChart(data,chartLegend,chartTitle)
-%生成图表，并保存
+
 chartLegend=strcat(chartLegend,'''',' ','''');
 chartLegend=strrep(chartLegend,'Every','r');
 [chartLegend]=ModifyName(chartLegend);
@@ -16,7 +17,7 @@ set(gca, 'color', 'white');
 set(gcf, 'InvertHardCopy', 'off');
 % set(gca,'xticklabel',{'2013-04-09','2013-05-09','2013-06-09','2013-07-09','2013-08-09','2013-09-09','2013-10-09','2013-11-09','2013-12-09','2014-01-09','2014-02-09','2014-03-09','2014-04-09'});
 % set(gca,'XTick',[1 22 44 66 88 110 132 154 176 198 220 242 261]);
-set(gca,'xticklabel',{'04/13','06/13','08/13','10/13','12/13','02/14','04/14'});
+set(gca,'xticklabel',{'Apr13','Jun13','Aug13','Oct13','Dec13','Feb14','Apr14'});
 set(gca,'XTick',[1  44  88  132  176  220  261]);
 title(chartTitle);
 % strcat('legend(',chartLegend,')');

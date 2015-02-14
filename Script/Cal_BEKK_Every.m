@@ -1,9 +1,10 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BEKK滚动参数
+% 动态parameters
+% 这个是采用动态的parameters，即parameters根据每条数据的前YC年计算而出
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [BEKK_Result1,BEKK_Result2] = Cal_BEKK_Every(data,Var_startIndex,weight1,weight2,name,p,o,q,YC)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 动态parameters，自己计算Ht&Rt
-% 这个是采用动态的parameters，即parameters根据每条数据的前9年计算而出
-% Ht和Rt采用自己计算方式。
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % YC=YC+1;
 if isempty(p)
     p=1;
@@ -50,8 +51,9 @@ for i=Var_startIndex:Var_lens
     %mData=newData(subIndex:end-261,:)
     mData=newData(i-260-261*YC+1:i-260-1,:);
     % 1
-    [PARAMETERS,LL,HT,VCV,SCORES] = bekk(mData,[],p,o,q);
-    [C,A,G,B] = bekk_parameter_transform(PARAMETERS,p,o,q,k,1);    
+    [PARAMETERS,LL,HT,VCV,SCORES] = bekk(mData,[],p,o,q,'Full');
+%     [C,A,G,B] = bekk_parameter_transform(PARAMETERS,p,o,q,k,1);    
+    [C,A,G,B] = bekk_parameter_transform(PARAMETERS,p,o,q,k,3);    
     Equity_BEKK_PARAMETERS(:,:,index)=PARAMETERS;   
 
     result_BEKK(:,:,index)= C+ A(:,:,j)'*m_new'*m_new*A(:,:,j)+B(:,:,j)'*Cov_PF*B(:,:,j);

@@ -1,3 +1,5 @@
+% 生成图表，并保存文件。
+% 对比图使用
 function  [result]=SaveChart_All(chartData,name)
 %判断
 % if isempty(chartData.data1)||isempty(chartData.data2)||isempty(chartData.data3)||isempty(chartData.data4)||isempty(chartData.data5)||isempty(chartData.data6)||isempty(chartData.data7)||isempty(chartData.data8)
@@ -64,7 +66,7 @@ if ~isempty(chartData.data1)
     [chartLegend]=ModifyName(chartLegend);
     [chartTitle]=ModifyName(cdata.chartTitle);
     plot(cdata.data);
-    set(gca,'xticklabel',{'04/13','08/13','12/13','04/14'});
+    set(gca,'xticklabel',{'Apr13','Aug13','Dec13','Apr14'});
     set(gca,'XTick',[1 88 176 261]);
     title(chartTitle);
     strcat('legend(',chartLegend,')');
@@ -81,7 +83,7 @@ if ~isempty(chartData.data2)
     [chartLegend]=ModifyName(chartLegend);
     [chartTitle]=ModifyName(cdata.chartTitle);
     plot(cdata.data);
-   set(gca,'xticklabel',{'04/13','08/13','12/13','04/14'});
+   set(gca,'xticklabel',{'Apr13','Aug13','Dec13','Apr14'});
     set(gca,'XTick',[1 88 176 261]);
     title(chartTitle);
     strcat('legend(',chartLegend,')');
@@ -98,7 +100,7 @@ if ~isempty(chartData.data3)
     [chartLegend]=ModifyName(chartLegend);
     [chartTitle]=ModifyName(cdata.chartTitle);
     plot(cdata.data);
-  set(gca,'xticklabel',{'04/13','08/13','12/13','04/14'});
+  set(gca,'xticklabel',{'Apr13','Aug13','Dec13','Apr14'});
     set(gca,'XTick',[1 88 176 261]);
     title(chartTitle);
     strcat('legend(',chartLegend,')');
@@ -115,7 +117,7 @@ if ~isempty(chartData.data4)
     [chartLegend]=ModifyName(chartLegend);
    [chartTitle]=ModifyName(cdata.chartTitle);
     plot(cdata.data);
-   set(gca,'xticklabel',{'04/13','08/13','12/13','04/14'});
+   set(gca,'xticklabel',{'Apr13','Aug13','Dec13','Apr14'});
     set(gca,'XTick',[1 88 176 261]);
     title(chartTitle);
     strcat('legend(',chartLegend,')');
@@ -132,7 +134,7 @@ if ~isempty(chartData.data5)
     [chartLegend]=ModifyName(chartLegend);
     [chartTitle]=ModifyName(cdata.chartTitle);
     plot(cdata.data);
-   set(gca,'xticklabel',{'04/13','08/13','12/13','04/14'});
+   set(gca,'xticklabel',{'Apr13','Aug13','Dec13','Apr14'});
     set(gca,'XTick',[1 88 176 261]);
     title(chartTitle);
     strcat('legend(',chartLegend,')');
@@ -149,7 +151,7 @@ if ~isempty(chartData.data6)
     [chartLegend]=ModifyName(chartLegend);
     [chartTitle]=ModifyName(cdata.chartTitle);
     plot(cdata.data);
-   set(gca,'xticklabel',{'04/13','08/13','12/13','04/14'});
+   set(gca,'xticklabel',{'Apr13','Aug13','Dec13','Apr14'});
     set(gca,'XTick',[1 88 176 261]);
     title(chartTitle);
     strcat('legend(',chartLegend,')');
@@ -166,7 +168,7 @@ if ~isempty(chartData.data7)
     [chartLegend]=ModifyName(chartLegend);
     [chartTitle]=ModifyName(cdata.chartTitle);
     plot(cdata.data);
-   set(gca,'xticklabel',{'04/13','08/13','12/13','04/14'});
+   set(gca,'xticklabel',{'Apr13','Aug13','Dec13','Apr14'});
     set(gca,'XTick',[1 88 176 261]);
     title(chartTitle);
     strcat('legend(',chartLegend,')');
@@ -183,7 +185,7 @@ if ~isempty(chartData.data8)
     [chartLegend]=ModifyName(chartLegend);
    [chartTitle]=ModifyName(cdata.chartTitle);
     plot(cdata.data);
-   set(gca,'xticklabel',{'04/13','08/13','12/13','04/14'});
+   set(gca,'xticklabel',{'Apr13','Aug13','Dec13','Apr14'});
     set(gca,'XTick',[1 88 176 261]);
     title(chartTitle);
     strcat('legend(',chartLegend,')');
@@ -200,7 +202,7 @@ if ~isempty(chartData.data9)
     [chartLegend]=ModifyName(chartLegend);
    [chartTitle]=ModifyName(cdata.chartTitle);
     plot(cdata.data);
-   set(gca,'xticklabel',{'04/13','08/13','12/13','04/14'});
+   set(gca,'xticklabel',{'Apr13','Aug13','Dec13','Apr14'});
     set(gca,'XTick',[1 88 176 261]);
     title(chartTitle);
     strcat('legend(',chartLegend,')');
@@ -217,7 +219,7 @@ if ~isempty(chartData.data10)
     [chartLegend]=ModifyName(chartLegend);
    [chartTitle]=ModifyName(cdata.chartTitle);
     plot(cdata.data);
-   set(gca,'xticklabel',{'04/13','08/13','12/13','04/14'});
+   set(gca,'xticklabel',{'Apr13','Aug13','Dec13','Apr14'});
     set(gca,'XTick',[1 88 176 261]);
     title(chartTitle);
     strcat('legend(',chartLegend,')');

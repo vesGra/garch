@@ -1,9 +1,10 @@
-function [DCC_Result1,DCC_Result2] = Cal_DCC_1(data,Var_startIndex,weight1,weight2,name,p,o,q)
 % 计算DCC poq默认101，一个参数
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 固定parameters
 % 这个是采用固定的parameters，即1-9年的log price算出来parameters，后面计算采用固定的参数计算
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function [DCC_Result1,DCC_Result2,DIAGNOSTICS] = Cal_DCC_1(data,Var_startIndex,weight1,weight2,name,p,o,q)
+
 m=1;
 l=0;
 n=1;
@@ -34,9 +35,11 @@ for i=261:Var_lens
         newData(i-260,j)=epsilon;
    end
 end
+
+DCC_Result2=[];
 % 1
 [PARAMETERS,LL,HtTemp,VCV,SCORES,DIAGNOSTICS,RRt,QQt,Ao,Go,Bo,Ro]=dcc(newData(1:end-261,:),[],p,o,q,m,l,n,2,'2-stage','none');
-
+[text,AIC,BIC]=tarch_display(PARAMETERS',LL,VCV,newData(1:end-261,1),p,o,q);
 gScale=DIAGNOSTICS.gScale;   
 scale = (1-sum(Ao)-sum(Bo)) - gScale*sum(Go);
 scale = sqrt(scale); 

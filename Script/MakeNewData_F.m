@@ -1,3 +1,5 @@
+%生成新的数据
+
 function [newData,newData_F,sigma] = MakeNewData_F(data)
 %生成新的数据
 %Factor GoGarch使用

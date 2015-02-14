@@ -1,6 +1,7 @@
-function [Data,Data2,flag] = LoadData(model,type,name,weightCount,YC)
-% 加载数据
+% 加载计算结果数据文件
 % flag 加载成功与否标记，1：成功；0：失败
+function [Data,Data2,flag] = LoadData(model,type,name,weightCount,YC)
+
 try  
     flag=1;
     Data=[];

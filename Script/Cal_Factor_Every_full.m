@@ -1,9 +1,10 @@
-function [Factor_Result1,Factor_Result2] = Cal_Factor_Every(data,Var_startIndex,weight1,weight2,name,p,o,q,numfactors,YC)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 动态parameters，自己计算Ht&Rt
-% 这个是采用动态的parameters，即parameters根据每条数据的前9年计算而出
-% Ht和Rt采用自己计算方式。
+% 计算全factor 滚动参数
+% 动态parameters
+% 这个是采用动态的parameters，即parameters根据每条数据的前YC年计算而出
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function [Factor_Result1,Factor_Result2] = Cal_Factor_Every_full(data,Var_startIndex,weight1,weight2,name,p,o,q,numfactors,YC)
+
 %YC=YC+1;
 if isempty(p)
     p=1;
@@ -82,10 +83,10 @@ end
 save(strcat('../modelResults/',name,'_Factor',num2str(p),num2str(o),num2str(q),'_PARAMETERS'),'Equity_Factor_PARAMETERS');
 % 保存数据文件
 if ~isempty(weight2)
-    save(strcat('../Result/',name,'_Factor',num2str(p),num2str(o),num2str(q),'_Every_Defensive'),'Factor_Result1');
-    save(strcat('../Result/',name,'_Factor',num2str(p),num2str(o),num2str(q),'_Every_Offensive'),'Factor_Result2');   
+    save(strcat('../Result/',name,'_Factor',num2str(p),num2str(o),num2str(q),'_Every_',num2str(YC+1),'_Defensive'),'Factor_Result1');
+    save(strcat('../Result/',name,'_Factor',num2str(p),num2str(o),num2str(q),'_Every_',num2str(YC+1),'_Offensive'),'Factor_Result2');   
 else
-    save(strcat('../Result/',name,'_Factor',num2str(p),num2str(o),num2str(q),'_Every'),'Factor_Result1');
+    save(strcat('../Result/',name,'_Factor',num2str(p),num2str(o),num2str(q),'_Every_',num2str(YC+1)),'Factor_Result1');
 end
 
 

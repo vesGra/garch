@@ -1,3 +1,5 @@
+%生成新的数据
+% 除Factor GoGarch外使用
 function [newData] = MakeNewData(data)
 %生成新的数据
 % 除Factor GoGarch外使用

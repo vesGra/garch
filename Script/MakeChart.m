@@ -1,6 +1,7 @@
-function  [result]=MakeChart(name,weightCount,numfactors)
 % 生成图表
 % weightCount : 占比个数，是否包含进攻与防守两个
+function  [result]=MakeChart(name,weightCount,numfactors)
+
 if isempty(name)
      error('名称必须有！');
 end
@@ -43,15 +44,14 @@ His2=[];
 model='His'; 
 type='His';      
 [His1,His2,flag] = LoadData(model,type,name,weightCount,[]);
-
 %2 DCC101_1
 model='DCC'; 
 type='DCC101_1';      
-chartTitle=strcat(name,' Historical & ',type,' volatility');
-chartLegend=strcat('''','Historical','''',',');
+chartTitle=strcat('DCC GARCH(1,1) - ',name,'_f');
+chartLegend=strcat('''','sample vola','''',',');
 [Data,Data2,flag] = LoadData(model,type,name,weightCount,[]);
 if(flag==1)
-    chartLegend=strcat(chartLegend,'''',type,'''',',');   
+    chartLegend=strcat(chartLegend,'''','one‐day‐ahead','''',',');   
     data=[His1 Data'];
     data2=[His2 Data2'];
     if(weightCount==1)
@@ -70,11 +70,13 @@ end
 model='DCC'; 
 type='DCC101_Every';   
 YC=1;
-chartTitle=strcat(name,' Historical & ',type,'_',num2str(YC),' volatility');
-chartLegend=strcat('''','Historical','''',',');
+% chartTitle=strcat(name,' Historical & ',type,'_',num2str(YC),' volatility');
+chartTitle=strcat('DCC GARCH(1,1) - ',name,'_r_1');
+chartLegend=strcat('''','sample vola','''',',');
 [Data,Data2,flag] = LoadData(model,type,name,weightCount,YC);
 if(flag==1)
-    chartLegend=strcat(chartLegend,'''',type,'_',num2str(YC),'''',',');   
+%     chartLegend=strcat(chartLegend,'''',type,'_',num2str(YC),'''',',');   
+    chartLegend=strcat(chartLegend,'''','one‐day‐ahead','''',',');
     data=[His1 Data'];
     data2=[His2 Data2'];
    if(weightCount==1)
@@ -92,11 +94,13 @@ end
 model='DCC'; 
 type='DCC101_Every';   
 YC=3;
-chartTitle=strcat(name,' Historical & ',type,'_',num2str(YC),' volatility');
-chartLegend=strcat('''','Historical','''',',');
+% chartTitle=strcat(name,' Historical & ',type,'_',num2str(YC),' volatility');
+chartTitle=strcat('DCC GARCH(1,1) - ',name,'_r_3');
+chartLegend=strcat('''','sample vola','''',',');
 [Data,Data2,flag] = LoadData(model,type,name,weightCount,YC);
 if(flag==1)
-    chartLegend=strcat(chartLegend,'''',type,'_',num2str(YC),'''',',');   
+%     chartLegend=strcat(chartLegend,'''',type,'_',num2str(YC),'''',',');   
+chartLegend=strcat(chartLegend,'''','one‐day‐ahead','''',',');
     data=[His1 Data'];
     data2=[His2 Data2'];
     if(weightCount==1)
@@ -117,11 +121,13 @@ YC=[];
 %4 BEKK101_1
 model='BEKK'; 
 type='BEKK101_1';  
-chartTitle=strcat(name,' Historical & ',type,' volatility');
-chartLegend=strcat('''','Historical','''',',');
+% chartTitle=strcat(name,' Historical & ',type,' volatility');
+chartTitle=strcat('BEKK GARCH(1,1,1) - ',name,'_f');
+chartLegend=strcat('''','sample vola','''',',');
 [Data,Data2,flag] = LoadData(model,type,name,weightCount,[]);
 if(flag==1)
-    chartLegend=strcat(chartLegend,'''',type,'''',',');   
+%     chartLegend=strcat(chartLegend,'''',type,'''',',');   
+chartLegend=strcat(chartLegend,'''','one‐day‐ahead','''',',');
     data=[His1 Data'];
     data2=[His2 Data2'];
     if(weightCount==1)
@@ -140,11 +146,13 @@ end
 model='BEKK'; 
 type='BEKK101_Every'; 
 YC=1;
-chartTitle=strcat(name,' Historical & ',type,'_',num2str(YC),' volatility');
-chartLegend=strcat('''','Historical','''',',');
+% chartTitle=strcat(name,' Historical & ',type,'_',num2str(YC),' volatility');
+chartTitle=strcat('BEKK GARCH(1,1,1) - ',name,'_r_1');
+chartLegend=strcat('''','sample vola','''',',');
 [Data,Data2,flag] = LoadData(model,type,name,weightCount,YC);
 if(flag==1)
-    chartLegend=strcat(chartLegend,'''',type,'_',num2str(YC),'''',',');   
+%     chartLegend=strcat(chartLegend,'''',type,'_',num2str(YC),'''',',');   
+chartLegend=strcat(chartLegend,'''','one‐day‐ahead','''',',');
     data=[His1 Data'];
     data2=[His2 Data2'];
     if(weightCount==1)
@@ -162,11 +170,13 @@ end
 model='BEKK'; 
 type='BEKK101_Every'; 
 YC=3;
-chartTitle=strcat(name,' Historical & ',type,'_',num2str(YC),' volatility');
-chartLegend=strcat('''','Historical','''',',');
+% chartTitle=strcat(name,' Historical & ',type,'_',num2str(YC),' volatility');
+chartTitle=strcat('BEKK GARCH(1,1,1) - ',name,'_r_3');
+chartLegend=strcat('''','sample vola','''',',');
 [Data,Data2,flag] = LoadData(model,type,name,weightCount,YC);
 if(flag==1)
-    chartLegend=strcat(chartLegend,'''',type,'_',num2str(YC),'''',',');   
+%     chartLegend=strcat(chartLegend,'''',type,'_',num2str(YC),'''',',');   
+chartLegend=strcat(chartLegend,'''','one‐day‐ahead','''',',');
     data=[His1 Data'];
     data2=[His2 Data2'];
     if(weightCount==1)
@@ -185,11 +195,13 @@ YC=[];
 %6 Factor101_1
 model='Factor'; 
 type='Factor101_1';     
-chartTitle=strcat(name,' Historical & ',type,' volatility');
-chartLegend=strcat('''','Historical','''',',');
+% chartTitle=strcat(name,' Historical & ',type,' volatility');
+chartTitle=strcat(numfactors,'-Factor GARCH(1,1) - ',name,'_f');
+chartLegend=strcat('''','sample vola','''',',');
 [Data,Data2,flag] = LoadData(model,type,name,weightCount,[]);
 if(flag==1)
-    chartLegend=strcat(chartLegend,'''',type,'_',numfactors,'''',',');   
+%     chartLegend=strcat(chartLegend,'''',type,'_',numfactors,'''',',');   
+chartLegend=strcat(chartLegend,'''','one‐day‐ahead','''',',');
     data=[His1 Data'];
     data2=[His2 Data2'];
     if(weightCount==1)
@@ -204,14 +216,17 @@ if(flag==1)
      tempData52 = struct('data',data2,'chartLegend',chartLegend,'chartTitle',chartTitle2);
     end    
 end
+
 %7 Factor101_1
 model='Factor'; 
 type='Factor101_Every'; 
-chartTitle=strcat(name,' Historical & ',type,' volatility');
-chartLegend=strcat('''','Historical','''',',');
+% chartTitle=strcat(name,' Historical & ',type,' volatility');
+chartTitle=strcat(numfactors,'-Factor GARCH(1,1) - ',name,'_r_1');
+chartLegend=strcat('''','sample vola','''',',');
 [Data,Data2,flag] = LoadData(model,type,name,weightCount,[]);
 if(flag==1)
-    chartLegend=strcat(chartLegend,'''',type,'_',numfactors,'''',',');   
+%     chartLegend=strcat(chartLegend,'''',type,'_',numfactors,'''',',');   
+chartLegend=strcat(chartLegend,'''','one‐day‐ahead','''',',');
     data=[His1 Data'];
     data2=[His2 Data2'];
     if(weightCount==1)
@@ -230,11 +245,13 @@ end
 model='Factor'; 
 type='Factor101_Every'; 
 YC=3;
-chartTitle=strcat(name,' Historical & ',type,'_',num2str(YC),' volatility');
-chartLegend=strcat('''','Historical','''',',');
+% chartTitle=strcat(name,' Historical & ',type,'_',num2str(YC),' volatility');
+chartTitle=strcat(numfactors,'-Factor GARCH(1,1) - ',name,'_r_3');
+chartLegend=strcat('''','sample vola','''',',');
 [Data,Data2,flag] = LoadData(model,type,name,weightCount,YC+1);
 if(flag==1)
-    chartLegend=strcat(chartLegend,'''',type,'_',num2str(YC),'''',',');   
+%     chartLegend=strcat(chartLegend,'''',type,'_',num2str(YC),'''',',');   
+chartLegend=strcat(chartLegend,'''','one‐day‐ahead','''',',');
     data=[His1 Data'];
     data2=[His2 Data2'];
     if(weightCount==1)
@@ -249,14 +266,17 @@ if(flag==1)
      tempData64 = struct('data',data2,'chartLegend',chartLegend,'chartTitle',chartTitle2);
     end    
 end
+return;
 %8 Gogarch11_1
 model='Gogarch'; 
 type='Gogarch11_1'; 
-chartTitle=strcat(name,' Historical & ',type,' volatility');
-chartLegend=strcat('''','Historical','''',',');
+% chartTitle=strcat(name,' Historical & ',type,' volatility');
+chartTitle=strcat('GO-GARCH(1,1) - ',name,'_f');
+chartLegend=strcat('''','sample vola','''',',');
 [Data,Data2,flag] = LoadData(model,type,name,weightCount,[]);
 if(flag==1)
-    chartLegend=strcat(chartLegend,'''',type,'''',',');   
+%     chartLegend=strcat(chartLegend,'''',type,'''',','); 
+chartLegend=strcat(chartLegend,'''','one‐day‐ahead','''',',');
     data=[His1 Data'];
     data2=[His2 Data2'];
     if(weightCount==1)
@@ -274,11 +294,14 @@ end
 %9 Gogarch11_1
 model='Gogarch'; 
 type='Gogarch11_Every'; 
-chartTitle=strcat(name,' Historical & ',type,' volatility');
-chartLegend=strcat('''','Historical','''',',');
-[Data,Data2,flag] = LoadData(model,type,name,weightCount,[]);
+YC=1;
+% chartTitle=strcat(name,' Historical & ',type,' volatility');
+chartTitle=strcat('GO-GARCH(1,1) - ',name,'_r_1');
+chartLegend=strcat('''','sample vola','''',',');
+[Data,Data2,flag] = LoadData(model,type,name,weightCount,YC+1);
 if(flag==1)
-    chartLegend=strcat(chartLegend,'''',type,'''',',');   
+%     chartLegend=strcat(chartLegend,'''',type,'''',',');   
+chartLegend=strcat(chartLegend,'''','one‐day‐ahead','''',',');
     data=[His1 Data'];
     data2=[His2 Data2'];
     if(weightCount==1)
@@ -297,11 +320,13 @@ end
 model='Gogarch'; 
 type='Gogarch11_Every'; 
 YC=3;
-chartTitle=strcat(name,' Historical & ',type,'_',num2str(YC),' volatility');
-chartLegend=strcat('''','Historical','''',',');
+% chartTitle=strcat(name,' Historical & ',type,'_',num2str(YC),' volatility');
+chartTitle=strcat('GO-GARCH(1,1) - ',name,'_r_3');
+chartLegend=strcat('''','sample vola','''',',');
 [Data,Data2,flag] = LoadData(model,type,name,weightCount,YC+1);
 if(flag==1)
-    chartLegend=strcat(chartLegend,'''',type,'_',num2str(YC),'''',',');   
+%     chartLegend=strcat(chartLegend,'''',type,'_',num2str(YC),'''',',');   
+chartLegend=strcat(chartLegend,'''','one‐day‐ahead','''',',');
     data=[His1 Data'];
     data2=[His2 Data2'];
     if(weightCount==1)

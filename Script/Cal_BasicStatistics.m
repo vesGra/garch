@@ -1,3 +1,5 @@
+% 计算BasicStatistics
+% 每次计算一个组合
 function [result]=Cal_BasicStatistics(lp)
 [row,col]=size(lp);
 result=[];
